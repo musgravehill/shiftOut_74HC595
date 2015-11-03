@@ -10,6 +10,8 @@ Shift registers at 74HC595
  ŘŜŤ--GND  reset 74HC595
  ŘŜŤ--VCC  normal mode
  
+ ÊŇ---10k-VCC 
+ 
  */
 
 uint8_t dataPin = 3; //DS of 74HC595

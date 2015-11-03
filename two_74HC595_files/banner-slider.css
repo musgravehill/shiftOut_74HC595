@@ -1,0 +1,11 @@
+
+.slide-banner-arrow { outline: none; display: block; width: 24px; height: 24px; background: url(../images/arrow-downup.png) no-repeat; background-position: 0 -24px; position: absolute; top: 155px; left: 50%; margin-left: 0px;}
+.slide-banner-arrow.opened { background-position: 0 0px; }
+
+.slide-banner-text { color:#999999; font-size:15px; }
+
+.slide-banner-text a { text-decoration: none; }
+
+.slide-banner-big { color:black; font-family:Georgia; font-size:22px; font-style:italic; font-weight:bold; }
+
+.slide-banner-average{ color:black; font-family:Georgia; font-size:16px; font-style:italic; font-weight:bold; }

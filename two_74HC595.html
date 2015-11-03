@@ -1,0 +1,2184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0041)http://robocraft.ru/blog/arduino/519.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>SPI и Arduino: плодим выходы / Arduino / RoboCraft - Arduino для начинающих, Raspberry Pi, робототехника.</title>
+		
+	<meta name="DESCRIPTION" content="SPI и Arduino: Теория Вывод Ввод  Рассмотрим классический сдвиговый регистр 74HC595, модель M74HC595B1 от STMicroelectronics. По сути, это преобразователь последовательного">
+	<meta name="KEYWORDS" content="Arduino,SPI,сдвиговый регистр,74HC595">	
+	
+	<link rel="stylesheet" type="text/css" href="./two_74HC595_files/style.css">
+	<!--[if IE 6]><link rel="stylesheet" type="text/css" href="http://robocraft.ru/templates/skin/new/css/ie6.css?v=1" /><![endif]-->
+	<!--[if gte IE 7]><link rel="stylesheet" type="text/css" href="http://robocraft.ru/templates/skin/new/css/ie7.css?v=1" /><![endif]-->	
+	<link rel="stylesheet" type="text/css" href="./two_74HC595_files/Roar.css">
+	<link rel="stylesheet" type="text/css" href="./two_74HC595_files/piechart.css">
+	<link rel="stylesheet" type="text/css" href="./two_74HC595_files/Autocompleter.css">
+	<link rel="stylesheet" type="text/css" href="./two_74HC595_files/prettify.css">
+	<!--[if gt IE 6]><link rel="stylesheet" type="text/css" href="http://robocraft.ru/templates/skin/new/css/simple_comments.css" /><![endif]-->
+		
+	<link href="http://robocraft.ru/templates/skin/new/images/favicon.ico" rel="shortcut icon">
+	<link rel="search" type="application/opensearchdescription+xml" href="http://robocraft.ru/search/opensearch/" title="RoboCraft - Arduino для начинающих, Raspberry Pi, робототехника.">
+	
+			<link rel="alternate" type="application/rss+xml" href="http://robocraft.ru/rss/comments/519/" title="SPI и Arduino: плодим выходы">
+	<script type="text/javascript">
+var DIR_WEB_ROOT='http://robocraft.ru';
+var DIR_STATIC_SKIN='http://robocraft.ru/templates/skin/new';
+var BLOG_USE_TINYMCE='';
+</script><script type="text/javascript" src="./two_74HC595_files/JsHttpRequest.js"></script><script type="text/javascript" src="./two_74HC595_files/mootools-1.2.js"></script><script type="text/javascript" src="./two_74HC595_files/Roar.js"></script><script type="text/javascript" src="./two_74HC595_files/Observer.js"></script><script type="text/javascript" src="./two_74HC595_files/Autocompleter.js"></script><script type="text/javascript" src="./two_74HC595_files/Autocompleter.Request.js"></script><script type="text/javascript" src="./two_74HC595_files/piechart.js"></script><script type="text/javascript" src="./two_74HC595_files/prettify.js"></script><script type="text/javascript" src="./two_74HC595_files/vote.js"></script><script type="text/javascript" src="./two_74HC595_files/favourites.js"></script><script type="text/javascript" src="./two_74HC595_files/questions.js"></script><script type="text/javascript" src="./two_74HC595_files/block_loader.js"></script><script type="text/javascript" src="./two_74HC595_files/friend.js"></script><script type="text/javascript" src="./two_74HC595_files/blog.js"></script><script type="text/javascript" src="./two_74HC595_files/other.js"></script><script type="text/javascript" src="./two_74HC595_files/login.js"></script><script type="text/javascript" src="./two_74HC595_files/panel.js"></script><script type="text/javascript">
+var tinyMCE=false;
+var msgErrorBox=new Roar({
+			position: 'upperRight',
+			className: 'roar-error',
+			margin: {x: 30, y: 10}
+		});	
+var msgNoticeBox=new Roar({
+			position: 'upperRight',
+			className: 'roar-notice',
+			margin: {x: 30, y: 10}
+		});	
+</script></head>
+
+
+
+
+
+
+
+
+
+<!--[if IE]>
+	<script type="text/javascript" src="http://robocraft.ru/classes/lib/external/MooTools_1.2/plugs/Piechart/moocanvas.js"></script>
+<![endif]-->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onload="prettyPrint()">
+
+
+
+<div id="debug" style="border: 2px #dd0000 solid; display: none;"></div>
+
+<div id="container">
+	
+		<!-- Header -->
+		
+	<div style="display: none;">
+	<div class="login-popup" id="login-form">
+		<div class="login-popup-top"><a href="http://robocraft.ru/blog/arduino/519.html#" class="close-block" onclick="return false;"></a></div>
+		<div class="content">
+			<form action="http://robocraft.ru/login/" method="post">
+				<h3>Авторизация</h3>
+				<div class="lite-note"><a href="http://robocraft.ru/registration/">Зарегистрироваться</a><label for="login-input">Логин или эл. почта</label></div>
+				<p><input type="text" class="input-text" name="login" tabindex="1" id="login-input"></p>
+				<div class="lite-note"><a href="http://robocraft.ru/login/reminder/" tabindex="-1">Напомнить пароль</a><label>Пароль</label></div>
+				<p><input type="password" name="password" class="input-text" tabindex="2"></p>
+				<div class="lite-note"><button type="submit" onfocus="blur()"><span><em>Войти</em></span></button><label class="input-checkbox"><input type="checkbox" name="remember" checked="" tabindex="3">Запомнить меня</label></div>
+				<input type="hidden" name="submit_login">
+			</form>
+		</div>
+		<div class="login-popup-bottom"></div>
+	</div>
+	</div>
+		
+	<div id="header">
+		<h1 style="padding: 0;">
+		<a href="http://robocraft.ru/"><img src="./two_74HC595_files/logo_robocraft_80.png" alt="RoboCraft" title="RoboCraft"></a>
+		<!-- <a href="http://robocraft.ru" style="background: url(http://robocraft.ru/rc80-ny.png) no-repeat scroll 0 -1px transparent; padding-left:80px; padding-top:25px; height:80px; display:block;"><strong>Robo</strong>Craft</a> -->
+		</h1>
+		
+		<ul class="nav-main">
+			<li class="active"><a href="http://robocraft.ru/blog/" style="text-decoration:none;">Блоги</a></li>
+			<!-- <li ><a href="http://robocraft.ru/people/">Люди</a></li>
+			<li ><a href="http://robocraft.ru/page/about/">О проекте</a></li> -->
+			<li><a href="http://robocraft.ru/page/summary/" style="text-decoration:none; color:white;">Статьи</a></li>
+			<li><a href="http://robocraft.ru/shop/" style="text-decoration:none; font-size: 24px; color:orange;" title="Наш Магазин">Магазин</a></li>
+			<li>
+				<a href="http://robocraft.ru/forum/" style="text-decoration:none;">Форум</a>
+			</li>
+			<!-- <li>
+				<a style="text-decoration:none; color: rgb(119, 209, 21);" href="http://robocraft.ru/blog/RoboCraft/3274.html">КиберВесна</a>
+			</li> -->
+		</ul>
+		
+				<div class="profile guest">
+			<a href="http://robocraft.ru/login/" onclick="return showLoginForm();">Войти</a> или 
+			<a href="http://robocraft.ru/registration/" class="reg">Зарегистрироваться</a>
+		</div>
+				
+	</div>
+	<!-- /Header -->	
+	
+	﻿	<!-- Navigation -->
+	<div id="nav">
+		<div class="left"></div>
+				
+							<ul class="menu">
+		
+			<li>
+				<a href="http://robocraft.ru/">Все</a> 							</li>
+			
+			<li class="active">
+				<a href="http://robocraft.ru/blog/">Тематические</a> 									<ul class="sub-menu">											
+						<li><div><a href="http://robocraft.ru/blog/">Хорошие</a></div></li>
+												<li><div><a href="http://robocraft.ru/blog/bad/">Плохие</a></div></li>
+					</ul>
+							</li>
+			
+			<li>
+				<a href="http://robocraft.ru/log/">Персональные</a> 							</li>
+			
+			<li>
+				<a href="http://robocraft.ru/top/">TOP</a>
+							</li>
+								
+		</ul>
+		
+		
+		
+			
+				
+		<div class="right"></div>
+		<!--<a href="#" class="rss" onclick="return false;"></a>-->
+		<div class="search">
+				 <form method="get" action="http://robocraft.ru/search/">
+                        <input class="text" type="text" id="srch" maxlength="32" name="searchfor" value="Поиск" onclick="if (value==&#39;Поиск&#39;) value=&#39;&#39;" onkeyup="fast_search();" onblur="close_fast_search();" onfocus="this.select();" autocomplete="off">
+                        <input class="button" type="submit" value="">
+			</form>
+		</div>
+	</div>
+	<!-- /Navigation -->
+	
+	<link rel="stylesheet" type="text/css" href="./two_74HC595_files/banner-slider.css">
+
+
+<script type="text/javascript">
+
+window.addEvent('domready', function(){	
+	var obj=$('my-slide-banner');
+	var arrow = $('slide-banner-arrow');
+	if(obj && arrow){
+		var bOpen = read_cookie();
+		if(bOpen=='1'){
+			obj.setStyle('display', 'block');
+			arrow.removeClass('opened');
+		}
+		else{
+			obj.setStyle('display', 'none');
+			arrow.removeClass('opened');
+			arrow.toggleClass('opened');
+		}
+		if (obj.getStyle('display')=='none') 
+			arrow.set('title','Открыть');
+		else
+			arrow.set('title','Закрыть');
+	}
+});
+
+function read_cookie()
+{
+	var allcookies = document.cookie;
+	//alert(allcookies);
+	
+	// получаем значения из кукиса :)
+	var pos = allcookies.indexOf("slidebanner=");
+	var slidebanner=1;
+	if (pos != -1){
+		var start = pos + 12; // Начало значения cookie
+		var end = allcookies.indexOf(";", start);
+		if (end == -1) end = allcookies.length;
+		
+		slidebanner = allcookies.substring(start, end); 
+		//alert(slidebanner);
+		return slidebanner;
+	}
+	return slidebanner;
+}
+
+function write_cookie(val)
+{
+	document.cookie = "slidebanner="+val+";path=/; max-age=" + (60*60*24*31);
+}
+
+function toggleSlideBAnnerInfo(link)
+{
+	link=$(link);
+	var obj=$('my-slide-banner');	
+	var slideObj = new Fx.Slide(obj, {
+		onComplete: function(){
+			if(link.get('title')=='Открыть'){
+				link.set('title','Закрыть');
+				write_cookie(1);
+			}
+			else{
+				link.set('title','Открыть');
+				write_cookie(0);
+			}
+	    }
+	});
+	if (obj.getStyle('display')=='none'){
+		slideObj.hide();
+		obj.setStyle('display','block');		
+	}	
+	link.toggleClass('opened');
+	slideObj.toggle();
+}
+</script>
+
+
+<a href="http://robocraft.ru/blog/arduino/519.html#" id="slide-banner-arrow" class="slide-banner-arrow" onclick="toggleSlideBAnnerInfo(this); return false;" title="Закрыть"></a>
+
+<div class="block stream" id="my-slide-banner" style="display: block;">
+	<div class="tl"><div class="tr"></div></div>
+		<div class="cl"><div class="cr">
+	<div>
+		<div style="margin: 0px; display: block;" id="ny-expand-content" class="ny-expand-content"> 
+			<table width="100%"> 
+				<tbody>
+					<tr>
+						<td width="20%" style="vertical-align: top;"> <a href="http://robocraft.ru/shop/index.php?route=product/product&product_id=422" target="_blank"><img src="./two_74HC595_files/craftduino-v2-0-small.png" alt="CraftDuino v2.0" title="CraftDuino v2.0"></a> </td>
+						<td style="vertical-align: top;" class="slide-banner-text">
+						<ul>
+							<li>
+							- это <span class="slide-banner-big" style="color: black;">CraftDuino</span> - наш вариант полностью Arduino-совместимой платы.
+							</li>
+							<li>
+							<a href="http://robocraft.ru/blog/RoboCraft/3294.html">CraftDuino</a> - настоящий конструктор, для очень быстрого прототипирования и реализации идей.
+							</li>
+							<li>
+								Любая возможность автоматизировать что-то с лёгкостью реализуется с <a href="http://robocraft.ru/blog/RoboCraft/3294.html">CraftDuino</a>!
+							</li>
+						</ul>
+							<ul>
+								<li>
+									<a href="http://robocraft.ru/blog/arduino/14.html"><span class="slide-banner-average" style="color: #6293c1;">Что такое Arduino?</span></a>
+								</li>
+								<li>
+									<a href="http://robocraft.ru/blog/arduino/18.html"><span class="slide-banner-average" style="color: #6293c1;">Зачем мне Arduino/CraftDuino?</span></a>
+								</li>
+								
+								<li>
+									<a href="http://robocraft.ru/blog/arduino/98.html"><span class="slide-banner-average" style="color: #6293c1;">Как начать работать с Arduino/CraftDuino?</span></a>
+								</li>
+								
+								<li>
+									<a href="http://robocraft.ru/blog/arduino/53.html"><span class="slide-banner-average" style="color: #6293c1;">Первая программа.</span></a>
+								</li>
+								
+								<li>
+									<a href="http://robocraft.ru/page/summary/#PracticalArduino"><span class="slide-banner-average" style="color: #6293c1;">Что дальше?</span></a> <a href="http://robocraft.ru/blog/projects/"><span class="slide-banner-average" style="color: #6293c1;">Arduino проекты!</span></a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table> 
+			<div style="text-align: center;" class="slide-banner-text">
+				<span class="slide-banner-big" style="color: black; font-size:20px;">Просто добавьте CraftDuino!</span>
+			</div>
+		</div>
+	</div>
+		
+		
+</div></div>
+<div class="bl"><div class="br"></div></div>
+</div>	
+	<!--
+	<div id="extra">
+		<a href="#">К списку постов</a>
+	</div>
+	-->
+	
+	<div id="wrapper" class="update-hide ">
+		
+	
+		<!-- Content -->
+		<div id="content">
+		
+					
+								<!-- Topic -->			
+			<div class="topic">
+				<div class="favorite fav-guest"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="lsFavourite.toggle(519,this,&#39;topic&#39;); return false;"></a></div>
+				<h1 class="title">
+										SPI и Arduino: плодим выходы
+									</h1>
+				<ul class="action">					
+					<li><a href="http://robocraft.ru/blog/arduino/">Arduino</a>&nbsp;&nbsp;</li>						
+														</ul>				
+				<div class="content">
+				
+							
+				
+				
+					SPI и Arduino:<ol><li><noindex><a href="http://robocraft.ru/blog/518.html" rel="nofollow">Теория</a></noindex></li><li><b>Вывод</b></li><li><noindex><a href="http://robocraft.ru/blog/520.html" rel="nofollow">Ввод</a></noindex></li></ol><br>
+Рассмотрим классический сдвиговый регистр 74HC595, модель M74HC595B1 от STMicroelectronics. По сути, это преобразователь последовательного интерфейса в параллельный: получает данные по SPI, а потом разом выставляет уровни на 8 ножках согласно полученным битам. Биты, выставляемые ведущим на выводе SI, проталкиваются по цепочке D-триггеров с каждым тактовым импульсом (от ведущего) на ноге SCK. Одновременный вывод на ножки параллельного интерфейса обеспечивается так называемой защёлкой (latch) RCK, которая «не пускает» переданные биты на выводы раньше времени. Вывод G управляет состоянием выводов — включает их либо переводит в состояние Hi-Z:<br>
+<br>
+<noindex><a href="http://robocraft.ru/files/spi/74HC595_schematics.png" rel="nofollow"><img src="./two_74HC595_files/74HC595_schematics_preview.jpg"></a></noindex><br>
+<br>
+А вот и сам регистр в DIP-корпусе:<br>
+<br>
+<noindex><a href="http://robocraft.ru/files/spi/shift_register.jpg" rel="nofollow"><img src="./two_74HC595_files/shift_register_preview.jpg"></a></noindex><br>
+<br>
+Выводы микросхемы имеют следующее назначение:<br>
+<ol><li><b>Vcc</b> — питание, от 2 до 6 В</li><li><b>GND</b> — земля</li><li><b>QA-QH</b> — эти выводы соответствуют битам, записанными по SPI</li><li><b>SI</b> — вход ведомого, MOSI (SPI)</li><li><b>G</b> — Output Enabe; когда на этом выводе низкий уровень, выводы включены (подключены к «защёлкам»), когда высокий — выводы переходят в состояние Hi-Z</li><li><b>RCK</b> — защёлка, SS (SPI); при установке низкого уровня выводы регистра защёлкиваются</li><li><b>SCK</b> — тактовый вход, SCLK (SPI)</li><li><b>SCLR</b> — Shift Register Clear Input; если на этом выводе низкий уровень, очищает все триггеры по фронту тактового сигнала на SCLK. С нашей точки зрения это банальный RESET: прижал к земле — сбросил все биты регистра</li><li><b>QH'</b> — на этом выводе будет появляться старший переданный бит</li></ol>Для начала попробуем помигать светодиодами через сдвиговый регистр. Для этого подключим выводы по следующей схеме:<br>
+<ul><li><b>Vcc</b> ⇨ +5 В</li><li><b>GND</b> ⇨ GND</li><li><b>QA-QH</b> ⇨ светодиоды через резисторы на 510 Ом</li><li><b>SI</b> ⇨ пин 11 Arduino (MOSI)</li><li><b>G</b> ⇨ GND (выводы включены)</li><li><b>RCK</b> ⇨ пин 8 (SS)</li><li><b>SCK</b> ⇨ пин 13 (SCLK)</li><li><b>SCLR</b> ⇨ +5 В (сброс неактивен)</li><li><b>QH'</b> оставим неподключенным</li></ul><noindex><a href="http://robocraft.ru/files/spi/1_shreg_schematics.png" rel="nofollow"><img src="./two_74HC595_files/1_shreg_schematics_preview.jpg"></a></noindex><br>
+<br>
+У меня получилось так:<br>
+<br>
+<noindex><a href="http://robocraft.ru/files/spi/1_shreg_connections.jpg" rel="nofollow"><img src="./two_74HC595_files/1_shreg_connections_preview.jpg"></a></noindex><br>
+<br>
+Мигать будем не как в классическом скетче Blink, а пробегая огоньком по линейке светодиодов, начиная с первого. Для этого напишем следующий код:<br>
+<br>
+<pre class="prettyprint"><code><span class="com">#include &lt;SPI.h&gt;</span><span class="pln"><br><br></span><span class="kwd">enum</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> REG_SELECT </span><span class="pun">=</span><span class="pln"> </span><span class="lit">8</span><span class="pln"> </span><span class="pun">};</span><span class="pln"> </span><span class="com">// пин, управляющий защёлкой (SS в терминах SPI)</span><span class="pln"><br><br></span><span class="kwd">void</span><span class="pln"> setup</span><span class="pun">()</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="com">/* Инициализируем шину SPI. Если используется программная реализация,<br>&nbsp; &nbsp;* то вы должны сами настроить пины, по которым будет работать SPI.<br>&nbsp; &nbsp;*/</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="kwd">begin</span><span class="pun">();</span><span class="pln"><br><br>&nbsp; pinMode</span><span class="pun">(</span><span class="pln">REG_SELECT</span><span class="pun">,</span><span class="pln"> OUTPUT</span><span class="pun">);</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">REG_SELECT</span><span class="pun">,</span><span class="pln"> LOW</span><span class="pun">);</span><span class="pln"> </span><span class="com">// выбор ведомого - нашего регистра</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="pln">transfer</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln"> </span><span class="com">// очищаем содержимое регистра</span><span class="pln"><br>&nbsp; </span><span class="com">/* Завершаем передачу данных. После этого регистр установит<br>&nbsp; &nbsp;* на выводах QA-QH уровни, соответствующие записанным битам.<br>&nbsp; &nbsp;*/</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">REG_SELECT</span><span class="pun">,</span><span class="pln"> HIGH</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="com">/* Эта функция сдвигает биты влево на одну позицию, перемещая старший бит<br>&nbsp;* на место младшего. Другими словами, она "вращает" биты по кругу.<br>&nbsp;* Например, 11110000 превращается в 11100001.<br>&nbsp;*/</span><span class="pln"><br></span><span class="kwd">void</span><span class="pln"> rotateLeft</span><span class="pun">(</span><span class="pln">uint8_t </span><span class="pun">&amp;</span><span class="pln">bits</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; uint8_t high_bit </span><span class="pun">=</span><span class="pln"> bits </span><span class="pun">&amp;</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br>&nbsp; bits </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">bits </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> high_bit</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="kwd">void</span><span class="pln"> loop</span><span class="pun">()</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">static</span><span class="pln"> uint8_t nomad </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln"> </span><span class="com">// это наш бегающий бит</span><span class="pln"><br><br>&nbsp; </span><span class="com">/* Записываем значение в сдвиговый регистр */</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">REG_SELECT</span><span class="pun">,</span><span class="pln"> LOW</span><span class="pun">);</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="pln">transfer</span><span class="pun">(</span><span class="pln">nomad</span><span class="pun">);</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">REG_SELECT</span><span class="pun">,</span><span class="pln"> HIGH</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="com">/* И вращаем биты влево - в следующий раз загорится другой светодиод */</span><span class="pln"><br>&nbsp; rotateLeft</span><span class="pun">(</span><span class="pln">nomad</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; delay</span><span class="pun">(</span><span class="lit">1000</span><span class="pln"> </span><span class="pun">/</span><span class="pln"> </span><span class="lit">8</span><span class="pun">);</span><span class="pln"> </span><span class="com">// пробегаем все 8 светодиодов за 1 секунду</span><span class="pln"><br></span><span class="pun">}</span></code></pre><br>
+Здорово. А если нам нужно больше выводов? Можно подсоединить ещё один сдвиговый регистр к той же шине SPI:<br>
+<br>
+<noindex><a href="http://robocraft.ru/files/spi/2_shregs_schematics.png" rel="nofollow"><img src="./two_74HC595_files/2_shregs_schematics_preview.jpg"></a></noindex><br>
+<br>
+Как-то так, например:<br>
+<br>
+<noindex><a href="http://robocraft.ru/files/spi/2_shregs_connections.jpg" rel="nofollow"><img src="./two_74HC595_files/2_shregs_connections_preview.jpg"></a></noindex><br>
+<br>
+Здесь у обоих регистров линии SCLK и MOSI общие, но у каждого своя линия SS. В результате мы получаем независимое управление двумя регистрами по одной шине SPI. Код аналогичен первому примеру:<br>
+<br>
+<pre class="prettyprint"><code><span class="com">#include &lt;SPI.h&gt;</span><span class="pln"><br><br></span><span class="kwd">enum</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> REG1 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">8</span><span class="pun">,</span><span class="pln"> REG2 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">7</span><span class="pln"> </span><span class="pun">};</span><span class="pln"><br><br><br></span><span class="com">/* Копипаста не для нас, писать в регистр теперь будем так */</span><span class="pln"><br></span><span class="kwd">void</span><span class="pln"> writeShiftRegister</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> ss_pin</span><span class="pun">,</span><span class="pln"> uint8_t value</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">ss_pin</span><span class="pun">,</span><span class="pln"> LOW</span><span class="pun">);</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="pln">transfer</span><span class="pun">(</span><span class="pln">value</span><span class="pun">);</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">ss_pin</span><span class="pun">,</span><span class="pln"> HIGH</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="kwd">void</span><span class="pln"> setup</span><span class="pun">()</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="kwd">begin</span><span class="pun">();</span><span class="pln"><br><br>&nbsp; </span><span class="com">/* Всё то же, что и в первом примере, только для двух регистров */</span><span class="pln"><br>&nbsp; pinMode</span><span class="pun">(</span><span class="pln">REG1</span><span class="pun">,</span><span class="pln"> OUTPUT</span><span class="pun">);</span><span class="pln"><br>&nbsp; pinMode</span><span class="pun">(</span><span class="pln">REG2</span><span class="pun">,</span><span class="pln"> OUTPUT</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; writeShiftRegister</span><span class="pun">(</span><span class="pln">REG1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln"><br>&nbsp; writeShiftRegister</span><span class="pun">(</span><span class="pln">REG2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="kwd">void</span><span class="pln"> rotateLeft</span><span class="pun">(</span><span class="pln">uint8_t </span><span class="pun">&amp;</span><span class="pln">bits</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; uint8_t high_bit </span><span class="pun">=</span><span class="pln"> bits </span><span class="pun">&amp;</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br>&nbsp; bits </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">bits </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> high_bit</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="kwd">void</span><span class="pln"> rotateRight</span><span class="pun">(</span><span class="pln">uint8_t </span><span class="pun">&amp;</span><span class="pln">bits</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; uint8_t low_bit </span><span class="pun">=</span><span class="pln"> bits </span><span class="pun">&amp;</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br>&nbsp; bits </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">bits </span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> low_bit</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="kwd">void</span><span class="pln"> loop</span><span class="pun">()</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">static</span><span class="pln"> uint8_t nomad1 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> nomad2 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0x80</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; writeShiftRegister</span><span class="pun">(</span><span class="pln">REG1</span><span class="pun">,</span><span class="pln"> nomad1</span><span class="pun">);</span><span class="pln"><br>&nbsp; rotateLeft</span><span class="pun">(</span><span class="pln">nomad1</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; writeShiftRegister</span><span class="pun">(</span><span class="pln">REG2</span><span class="pun">,</span><span class="pln"> nomad2</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="com">/* Для разнообразия погоняем биты во втором регистре в обратную сторону */</span><span class="pln"><br>&nbsp; rotateRight</span><span class="pun">(</span><span class="pln">nomad2</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; delay</span><span class="pun">(</span><span class="lit">1000</span><span class="pln"> </span><span class="pun">/</span><span class="pln"> </span><span class="lit">8</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span></code></pre><br>
+<br>
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/asv-EReV5cA&amp;hl=en"><param name="wmode" value="opaque"><embed src="http://www.youtube.com/v/asv-EReV5cA&amp;hl=en" type="application/x-shockwave-flash" wmode="opaque" width="425" height="344"></object><br>
+<br>
+Но и это ещё не всё, как любят говорить в «магазинах на диване» — есть ещё каскадное подключение сдвиговых регистров. При таком подключении биты из первого регистра будут проталкиваться в следующий в каскаде регистр, а из него — в следующий, и так далее. Таким образом, каскад из двух 8-битных регистров будет работать, как один 16-битный, а каскад из 10 регистров — как один 80-битный (схему можно печатать на рулонах — получится оригинальный подарок электронщику).<br>
+Мы не мажоры, нам хватит и 16-битного. Нужно подсоединить вывод QH' первого регистра к пину SI (MOSI) второго, и оба регистра повесить на общую линию SS, чтобы активировать их оба за раз:<br>
+<br>
+<noindex><a href="http://robocraft.ru/files/spi/16bit_shreg_schematics.png" rel="nofollow"><img src="./two_74HC595_files/16bit_shreg_schematics_preview.jpg"></a></noindex><br>
+<br>
+<noindex><a href="http://robocraft.ru/files/spi/16bit_shreg_connections.jpg" rel="nofollow"><img src="./two_74HC595_files/16bit_shreg_connections_preview.jpg"></a></noindex><br>
+<br>
+<pre class="prettyprint"><code><span class="com">#include &lt;SPI.h&gt;</span><span class="pln"><br><br></span><span class="kwd">enum</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> REG </span><span class="pun">=</span><span class="pln"> </span><span class="lit">8</span><span class="pln"> </span><span class="pun">};</span><span class="pln"><br><br><br></span><span class="com">/* Теперь шлём по 16 бит. Важный момент: так как по умолчанию<br>&nbsp;* данные передаются, начиная со старшего бита, сначала нужно<br>&nbsp;* послать старший байт, затем - младший - тогда всё 16 бит<br>&nbsp;* передадутся в правильном порядке.<br>&nbsp;*/</span><span class="pln"><br></span><span class="kwd">void</span><span class="pln"> writeShiftRegister16</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> ss_pin</span><span class="pun">,</span><span class="pln"> uint16_t value</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">ss_pin</span><span class="pun">,</span><span class="pln"> LOW</span><span class="pun">);</span><span class="pln"><br>&nbsp; </span><span class="com">/* Фокус вот в чём: сначала шлём старший байт */</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="pln">transfer</span><span class="pun">(</span><span class="pln">highByte</span><span class="pun">(</span><span class="pln">value</span><span class="pun">));</span><span class="pln"><br>&nbsp; </span><span class="com">/* А потом младший */</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="pln">transfer</span><span class="pun">(</span><span class="pln">lowByte</span><span class="pun">(</span><span class="pln">value</span><span class="pun">));</span><span class="pln"><br>&nbsp; digitalWrite</span><span class="pun">(</span><span class="pln">ss_pin</span><span class="pun">,</span><span class="pln"> HIGH</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="kwd">void</span><span class="pln"> setup</span><span class="pun">()</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; SPI</span><span class="pun">.</span><span class="kwd">begin</span><span class="pun">();</span><span class="pln"><br><br>&nbsp; pinMode</span><span class="pun">(</span><span class="pln">REG</span><span class="pun">,</span><span class="pln"> OUTPUT</span><span class="pun">);</span><span class="pln"><br>&nbsp; writeShiftRegister16</span><span class="pun">(</span><span class="pln">REG</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="com">/* Слегка изменим функцию для работы с 16-битными значениями */</span><span class="pln"><br></span><span class="kwd">void</span><span class="pln"> rotateLeft</span><span class="pun">(</span><span class="pln">uint16_t </span><span class="pun">&amp;</span><span class="pln">bits</span><span class="pun">)</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; uint16_t high_bit </span><span class="pun">=</span><span class="pln"> bits </span><span class="pun">&amp;</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="lit">15</span><span class="pun">)</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br>&nbsp; bits </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">bits </span><span class="pun">&lt;&lt;</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> high_bit</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"><br><br><br></span><span class="kwd">void</span><span class="pln"> loop</span><span class="pun">()</span><span class="pln"><br></span><span class="pun">{</span><span class="pln"><br>&nbsp; </span><span class="kwd">static</span><span class="pln"> uint16_t nomad </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln"><br><br>&nbsp; writeShiftRegister16</span><span class="pun">(</span><span class="pln">REG</span><span class="pun">,</span><span class="pln"> nomad</span><span class="pun">);</span><span class="pln"><br>&nbsp; rotateLeft</span><span class="pun">(</span><span class="pln">nomad</span><span class="pun">);</span><span class="pln"><br><br>&nbsp; delay</span><span class="pun">(</span><span class="lit">1000</span><span class="pln"> </span><span class="pun">/</span><span class="pln"> </span><span class="lit">8</span><span class="pun">);</span><span class="pln"><br></span><span class="pun">}</span></code></pre><br>
+Заметьте, в функции writeShiftRegister16() сначала пишется старший байт — это потому что мы используем порядок бит MSBFIRST. Если смените порядок бит на LSBFIRST, придётся функцию поменять — слать сначала младший байт.<br>
+<br>
+<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/WSfFpcLgBNg&amp;hl=en"><param name="wmode" value="opaque"><embed src="http://www.youtube.com/v/WSfFpcLgBNg&amp;hl=en" type="application/x-shockwave-flash" wmode="opaque" width="425" height="344"></object><br>
+<br>
+Исходники примеров доступны для скачивания напрямую и на GitHub в <noindex><a href="https://github.com/RoboCraft/examples" rel="nofollow">репозитории</a></noindex> RoboCraft:<ul><li><noindex><a href="http://robocraft.ru/files/spi/shreg_demo_rus.pde" rel="nofollow">1 регистр</a></noindex></li><li><noindex><a href="http://robocraft.ru/files/spi/shreg_2x_demo_rus.pde" rel="nofollow">2 регистра</a></noindex></li><li><noindex><a href="http://robocraft.ru/files/spi/shreg_16bit_demo_rus.pde" rel="nofollow">16-битный регистр</a></noindex></li></ul>Картинки из статьи лежат в <noindex><a href="http://fotki.yandex.ru/users/brain-damaged/album/116514/?p=0" rel="nofollow">альбоме</a></noindex> на Яндекс.Фотках.<br>
+<br>
+Использовалось железо:<ul><li>Сдвиговые регистры 74HC595, модель <noindex><a href="http://robocraft.ru/store/catalog/17" rel="nofollow">M74HC595B1</a></noindex></li><li>Arduino-совместимая плата <noindex><a href="http://robocraft.ru/store/catalog/1" rel="nofollow">CraftDuino</a></noindex>, удобные <noindex><a href="http://robocraft.ru/store/catalog/21" rel="nofollow">провода</a></noindex> и <noindex><a href="http://robocraft.ru/store/catalog/8" rel="nofollow">макетка</a></noindex></li><li>Светодиоды, резисторы 510 Ом</li></ul>Следующая тема — <noindex><a href="http://robocraft.ru/blog/520.html" rel="nofollow">SPI и Arduino: ввод</a></noindex>
+				</div>				
+				<ul class="tags">
+											<li><a href="http://robocraft.ru/tag/Arduino/">Arduino</a>, </li>
+											<li><a href="http://robocraft.ru/tag/SPI/">SPI</a>, </li>
+											<li><a href="http://robocraft.ru/tag/%D1%81%D0%B4%D0%B2%D0%B8%D0%B3%D0%BE%D0%B2%D1%8B%D0%B9%20%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80/">сдвиговый регистр</a>, </li>
+											<li><a href="http://robocraft.ru/tag/74HC595/">74HC595</a></li>
+														
+				</ul>				
+				<ul class="voting positive guest ">
+					<li class="plus"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="lsVote.vote(519,this,1,&#39;topic&#39;); return false;"></a></li>
+					<li class="total" title="всего проголосовало: 1"> +1 </li>
+					<li class="minus"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="lsVote.vote(519,this,-1,&#39;topic&#39;); return false;"></a></li>
+					<li class="date">12 мая 2011, 14:19</li>
+										<li class="author"><a href="http://robocraft.ru/profile/burjui/">burjui</a></li>					
+				</ul>
+
+<!-- ������.������ -->
+<script type="text/javascript">
+//<![CDATA[
+yandex_partner_id = 61645;
+yandex_site_bg_color = 'FFFFFF';
+yandex_site_charset = 'utf-8';
+yandex_ad_format = 'direct';
+yandex_font_size = 1;
+yandex_direct_type = 'horizontal';
+yandex_direct_border_type = 'block';
+yandex_direct_limit = 4;
+yandex_direct_bg_color = 'FFFFFF';
+yandex_direct_border_color = 'FFFFFF';
+yandex_direct_title_color = '0000CC';
+yandex_direct_url_color = '006600';
+yandex_direct_all_color = '0000CC';
+yandex_direct_text_color = '000000';
+yandex_direct_hover_color = '0066FF';
+yandex_direct_favicon = false;
+document.write('<sc'+'ript type="text/javascript" src="http://an.yandex.ru/system/context.js"></sc'+'ript>');
+//]]>
+</script><script type="text/javascript" src="http://an.yandex.ru/system/context.js"></script>
+
+			</div>
+			<!-- /Topic -->			
+			
+			<script type="text/javascript" src="./two_74HC595_files/comments.js"></script>
+
+			<!-- Comments -->
+			<div class="comments">
+								
+				<!-- Comments Header -->
+				<div class="header">
+					<h3>Комментарии (<span id="count-comments">35</span>)</h3>
+					<a name="comments"></a>
+					<a href="http://robocraft.ru/rss/comments/519/" class="rss">RSS</a>
+					<a href="http://robocraft.ru/blog/arduino/519.html#" onclick="lsCmtTree.collapseNodeAll(); return false;" onfocus="blur();">свернуть</a> /
+					<a href="http://robocraft.ru/blog/arduino/519.html#" onclick="lsCmtTree.expandNodeAll(); return false;" onfocus="blur();">развернуть</a>
+				</div>
+				<!-- /Comments Header -->			
+				
+				
+				<script language="JavaScript" type="text/javascript">
+					window.addEvent('domready', function() {
+						
+						lsCmtTree.setIdCommentLast(5094);
+						
+					});					
+				</script>
+				
+				
+																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1298">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1298"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+2</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1298,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1298,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1298" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				вопрос в следующем: хочу повесить на атмегу 328 управление 24ю сервами, но у самой микросхемы нет столько выходов. <br>
+<br>
+надо либо делать все на 1280/2560 либо использовать сдвиговые регистры. <br>
+<br>
+собственно, пробовал ли кто-нибудь второй вариант? 
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/xtile/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/xtile/" class="author">xtile</a></p>
+								<ul>
+									<li class="date">20 мая 2011, 15:06</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1298" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1298" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1298" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1298">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1299">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1299"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+3</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1299,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1299,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1299" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				О втором варианте я как раз статью пишу, и библиотеку Servo под это дело допиливаю. Пару дней потерпишь? (:
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">20 мая 2011, 17:41</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1299" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1298" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1299" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1299" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1299">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1300">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment1300"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+1</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1300,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1300,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1300" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Ха, отличная новость! <br>
+<br>
+буду ждать :)
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/xtile/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/xtile/" class="author">xtile</a></p>
+								<ul>
+									<li class="date">20 мая 2011, 18:15</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1300" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1299" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1300" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1300" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1300">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div></div></div>    				    
+    				<div class="comment" id="comment_id_1305">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1305"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1305,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1305,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1305" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Спасибо за статью, расширила мой кругозор.<br>
+Пока делал по ней столкнулся с неожиданностью: на картинке с фоткой сверху микросхемы выходы обозначены как надо, но на схеме ниже уже нет :) Видимо потому что разные микросхемы. Меня это сбило с толку на некоторое время.<br>
+Например где на верхней QA, на нижней GND.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Sicness/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Sicness/" class="author">Sicness</a></p>
+								<ul>
+									<li class="date">21 мая 2011, 07:04</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1305" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1305" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1305" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1305">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1306">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment1306"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+1</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1306,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1306,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1306" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				На схеме расположение выводов не нормированно — как рисовать удобней — обозначения и номерера совпадают же=)<br>
+
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Zoltberg/"><img src="./two_74HC595_files/avatar_24x24(1).jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Zoltberg/" class="author">Zoltberg</a></p>
+								<ul>
+									<li class="date">21 мая 2011, 09:31</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1306" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1305" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1306" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1306" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1306">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_1307">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1307"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+1</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1307,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1307,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1307" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Zoltberg дело говорит (:<br>
+Если бы я расположил выводы на схеме так же, как и на реальной микросхеме, схема получилась бы достаточно запутанной. Собственно, я сначала так и делал, пока не стал путаться сам.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">21 мая 2011, 10:21</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1307" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1305" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1307" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1307" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1307">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1309">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment1309"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+1</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1309,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1309,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1309" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				я дополню, что для микросхем обычно есть некое стандартное схемотехническое обозначение, иногда даже без номеров выводов, просто с названиями
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/xtile/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/xtile/" class="author">xtile</a></p>
+								<ul>
+									<li class="date">21 мая 2011, 13:43</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1309" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1307" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1309" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1309" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1309">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div></div></div>    				    
+    				<div class="comment" id="comment_id_1356">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1356"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+1</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1356,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1356,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1356" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				А чем можно расширить число выходов с PWM? <br>
+Ну что бы например подключить 3-4 RGB-светодиода? 
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/nubas/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/nubas/" class="author">nubas</a></p>
+								<ul>
+									<li class="date">24 мая 2011, 19:06</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1356" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1356" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1356" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1356">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1359">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment1359"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1359,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1359,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1359" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Хм, это тоже можно сделать через сдвиговый регистр при желании. Я тут пишу статью по подключению разной периферии через регистры — попробую что-нибудь придумать для PWM (:<br>
+А так-то, для этих целей используют специальные микросхемы вроде SG1525A.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">24 мая 2011, 20:02</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1359" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1356" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1359" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1359" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1359">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_1360">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment1360"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1360,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1360,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1360" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Иностранцы пишут, что для LED годится TLC5940, которая через PWM управляет 16 светодиодами. То есть одной микросхемы хватит на 5 RGB-светодиодов.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">24 мая 2011, 20:05</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1360" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1356" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1360" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1360" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1360">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div>    				    
+    				<div class="comment" id="comment_id_1577">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1577"></a>							
+							<div class="voting positive guest     ">
+								<div class="total">+1</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1577,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1577,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1577" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				В последнем примере объявлена процедура<br>
+void writeShiftRegister16(int ss_pin, uint16_t value)<br>
+А после она вызывается с недостающим параметром, что вызывает ошибку<br>
+writeShiftRegister16(nomad);<br>
+
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/pakhontas/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/pakhontas/" class="author">pakhontas</a></p>
+								<ul>
+									<li class="date">4 сентября 2011, 21:05</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1577" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1577" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1577" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1577">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1578">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment1578"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1578,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1578,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1578" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Спасибо, исправил. Похоже, ранее я поправил эту ошибку у себя локально и забыл обновить пост.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">4 сентября 2011, 21:59</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1578" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1577" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1578" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1578" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1578">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div>    				    
+    				<div class="comment" id="comment_id_1764">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1764"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1764,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1764,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1764" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Какая разница между 74HC595B1 и 74HC595D? Второй стоит в 2,5 раза дешевле!
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/nes/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/nes/" class="author">nes</a></p>
+								<ul>
+									<li class="date">24 октября 2011, 08:52</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1764" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1764" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1764" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1764">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_1766">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment1766"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(1766,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(1766,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_1766" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				У 74HC595B1 корпус — DIP-16 (можно ставить в макетку), а у 74HC595D — SO-16 (для поверхностного монтажа, SMD, нужно разводить плату).
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">24 октября 2011, 10:29</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment1766" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1764" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_1766" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_1766" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-1766">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_2652">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment2652"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(2652,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(2652,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_2652" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Запоздалое спасибо за ответ! Купил осенью себе пару штук от NXP по 50+ рублей, а на eBay такие микрухи от ST в DIP-корпусе обошлись мне по 7,5 р :) 
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/nes/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/nes/" class="author">nes</a></p>
+								<ul>
+									<li class="date">16 марта 2012, 12:13</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment2652" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment1766" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_2652" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_2652" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-2652">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div></div></div>    				    
+    				<div class="comment" id="comment_id_2368">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment2368"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(2368,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(2368,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_2368" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Ребята, а подскажите, а на ноги MOSI и SCK обязательно вешать? Или все же можно на любые свободные?
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Singrana/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Singrana/" class="author">Singrana</a></p>
+								<ul>
+									<li class="date">13 февраля 2012, 22:31</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment2368" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_2368" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_2368" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-2368">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_2369">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment2369"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(2369,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(2369,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_2369" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Желательно. Если очень хочется, можно использовать пару других ног, но тогда вам придётся их настроить самостоятельно, а также использовать функцию <noindex><a href="http://www.arduino.cc/en/Tutorial/ShiftOut" rel="nofollow">shiftOut()</a></noindex> для записи в регистр.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">14 февраля 2012, 07:46</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment2369" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment2368" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_2369" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_2369" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-2369">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_2370">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment2370"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(2370,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(2370,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_2370" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				То есть придется отказаться от класса SPI? Требуется сразу задействовать ввод и вывод. Хотя, как я понимаю, они не будут друг другу мешать. Для вывода, например, к MOSI и SCK используется еще и 8 пин, а для ввода MISO, SCK и пин 9. По идее все должно нормально работать?
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Singrana/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Singrana/" class="author">Singrana</a></p>
+								<ul>
+									<li class="date">14 февраля 2012, 09:04</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment2370" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment2369" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_2370" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_2370" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-2370">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_2371">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment2371"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(2371,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(2371,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_2371" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Всё верно: на каждое SPI-устройство выделяешь по отдельной линии SS — и они друг другу не мешают.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">14 февраля 2012, 09:20</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment2371" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment2370" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_2371" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_2371" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-2371">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_2372">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment2372"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(2372,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(2372,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_2372" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Благодарю :) Теперь можно окончательно доделывать схему и печатную плату устройства :)
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Singrana/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Singrana/" class="author">Singrana</a></p>
+								<ul>
+									<li class="date">14 февраля 2012, 09:22</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment2372" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment2371" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_2372" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_2372" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-2372">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div></div></div></div></div></div></div>    				    
+    				<div class="comment" id="comment_id_3112">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment3112"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3112,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3112,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3112" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Верно ли я понимаю, что драйвер светодиодов MBI5028 — такой же 16-битный сдвиговый регистр и подключается он так же — за исключением линии яркости и резистора на ту же тему? Или у него как-то по-другому реализовано?
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Shihad/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Shihad/" class="author">Shihad</a></p>
+								<ul>
+									<li class="date">13 июня 2012, 20:14</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3112" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3112" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3112" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3112">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_3560">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment3560"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3560,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3560,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3560" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				А можно ли передать ШИМ по spi?
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/ishutinvalera48/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/ishutinvalera48/" class="author">ishutinvalera48</a></p>
+								<ul>
+									<li class="date">8 ноября 2012, 19:06</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3560" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3560" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3560" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3560">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_3561">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment3561"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3561,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3561,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3561" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Только если организуете ШИМ вручную — дёргая выводы сдвигового регистра в нужные моменты (по прерываниям от тайпера, например). Всё-таки, сдвиговые регистры — не полноценные входы/выходы (:
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">8 ноября 2012, 19:10</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3561" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment3560" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3561" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3561" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3561">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div>    				    
+    				<div class="comment" id="comment_id_3570">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment3570"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3570,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3570,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3570" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Помогите, есть платка с жк, а на обратной стороне 8 штук hef4015bt. Вот и нужно запустить это все а на эти регистры нету никаких примеров, и как включать их я тоже не знаю
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/ishutinvalera48/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/ishutinvalera48/" class="author">ishutinvalera48</a></p>
+								<ul>
+									<li class="date">9 ноября 2012, 20:15</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3570" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3570" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3570" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3570">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_3697">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment3697"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3697,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3697,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3697" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				спасибо! самое понятное с примерами разъяснение SPI и работа с 71HC595<br>
+<br>
+у меня по ходу вопрос: а почему, при включении 71HC595, светодиоды некоторые зажигаются? почему сам регистр не очищается при включении?<br>
+может есть какой-то аппаратный метод включения для самоочистки?
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/umkin777/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/umkin777/" class="author">umkin777</a></p>
+								<ul>
+									<li class="date">30 января 2013, 16:03</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3697" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3697" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3697" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3697">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_3698">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment3698"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3698,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3698,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3698" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				74HC595 *<br>
+<br>
+видимо, нужно допаять сброс с конденсатором и резистором на SCLR?
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/umkin777/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/umkin777/" class="author">umkin777</a></p>
+								<ul>
+									<li class="date">30 января 2013, 16:09</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3698" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3698" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3698" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3698">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_3700">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment3700"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3700,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3700,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3700" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Хорошая идея.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">1 февраля 2013, 02:42</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3700" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment3698" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3700" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3700" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3700">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div>    				    
+    				<div class="comment" id="comment_id_3722">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment3722"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(3722,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(3722,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_3722" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Товарищи, хочу сделать что то типо этого <noindex><a href="http://www.youtube.com/watch?v=JFKPlNoBpfk" rel="nofollow">www.youtube.com/watch?v=JFKPlNoBpfk</a></noindex>, но не могу с кодом разобраться, читал читал так и не получается. не могу заставить бегать бит от изменений на А0.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/itan21/"><img src="./two_74HC595_files/avatar_24x24(2).jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/itan21/" class="author">itan21</a></p>
+								<ul>
+									<li class="date">11 февраля 2013, 09:16</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment3722" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_3722" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_3722" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-3722">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_4112">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment4112"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(4112,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(4112,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_4112" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Огромное спасибо за статью!<br>
+Решил поэкспериментировать с выходным сдвиговым регистром. Возникла проблемка, так как я новичок в этом, как записать значения в регистр из массива?<br>
+Заранее спасибо!!!
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Maksim_Z/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Maksim_Z/" class="author">Maksim_Z</a></p>
+								<ul>
+									<li class="date">22 июня 2013, 17:40</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment4112" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_4112" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_4112" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-4112">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_4113">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment4113"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(4113,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(4113,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_4113" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Я не понимаю сути вопроса. У вас проблемы со сдвиговым регистром, с массивами или с битовыми операциями? Допустим, у вас есть массив 8 значений — 0 или 1, и вы хотите, чтобы каждый элемент массива «управлял» соответствующим выводом регистра, тогда код будет таким:<br>
+<br>
+<pre class="prettyprint"><code><span class="pln">uint8_t array</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">...;</span><span class="pln"><br>uint8_t reg_value </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br><br></span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">8</span><span class="pun">;</span><span class="pln"> </span><span class="pun">++</span><span class="pln">i</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; reg_value </span><span class="pun">|=</span><span class="pln"> array</span><span class="pun">[</span><span class="pln">i</span><span class="pun">]</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> i</span><span class="pun">;</span><span class="pln"><br><br>digitalWrite</span><span class="pun">(</span><span class="pln">REG_SELECT</span><span class="pun">,</span><span class="pln"> LOW</span><span class="pun">);</span><span class="pln"><br>SPI</span><span class="pun">.</span><span class="pln">transfer</span><span class="pun">(</span><span class="pln">reg_value</span><span class="pun">);</span><span class="pln"><br>digitalWrite</span><span class="pun">(</span><span class="pln">REG_SELECT</span><span class="pun">,</span><span class="pln"> HIGH</span><span class="pun">);</span></code></pre>
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">23 июня 2013, 13:34</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment4113" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment4112" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_4113" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_4113" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-4113">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_4114">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="cursor: pointer; display: inline;">
+							<a name="comment4114"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(4114,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(4114,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_4114" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Спасибо! Примерно этого я и хотел добиться! Если что, извиняйте, если не понятно суть вопроса изложил. Проблемы в целом, с программированием...:) Только учусь. <br>
+<br>
+«reg |= lamp_state_array[i] &lt;&lt; i» эта строка возвращает не те значения, которые нужно. <br>
+С каждым нажатием кнопки в переменной reg увеличивается число. И соответственно контроллер этого уже не понимает. Я хочу управлять нагрузкой через сдвиговый регистр. И мне нужно в определенном элементе массива менять с 0 на 1 либо наоборот. С массивом то я разобрался...:) только вот как теперь значения в регистр загнать ни как не могу допетрить..) Тот, вариант который вы предложили рабочий, но до второго нажатия кнопки. Потом не работает. 
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Maksim_Z/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Maksim_Z/" class="author">Maksim_Z</a></p>
+								<ul>
+									<li class="date">23 июня 2013, 16:55</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment4114" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment4113" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_4114" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_4114" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-4114">    
+    				    
+    																		
+					   					        
+    				    
+    				<div class="comment" id="comment_id_4115">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment4115"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(4115,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(4115,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_4115" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Вот поэтому я и говорю, что пользователям Arduino всё равно нужно знать C++, чтобы сделать что-либо, кроме стандартных примеров (:<br>
+<br>
+В случае обработки нажатия кнопки вам нужно делать так:<br>
+<pre class="prettyprint"><code><span class="pln">reg_value </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br>reg </span><span class="pun">|=</span><span class="pln"> lamp_state_array</span><span class="pun">[</span><span class="pln">i</span><span class="pun">]</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> i</span><span class="pun">;</span><span class="pln"><br></span></code></pre>Дело в том, что запись<br>
+<pre class="prettyprint"><code><span class="pln">reg </span><span class="pun">|=</span><span class="pln"> x</span><span class="pun">;</span></code></pre>эквивалентна записи<br>
+<pre class="prettyprint"><code><span class="pln">reg </span><span class="pun">=</span><span class="pln"> reg </span><span class="pun">|</span><span class="pln"> x</span><span class="pun">;</span></code></pre>Естественно, что вам нужно обнулять значение reg перед циклом на каждое нажатие кнопки.
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/burjui/"><img src="./two_74HC595_files/avatar_24x24.png" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/burjui/" class="author">burjui</a></p>
+								<ul>
+									<li class="date">23 июня 2013, 20:02</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment4115" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment4114" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_4115" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_4115" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-4115">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_4116">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment4116"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(4116,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(4116,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_4116" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Попытайтесь более понятно объяснить, чего хотите добиться.<br>
+<br>
+<pre class="prettyprint"><code><span class="pln"><br>&nbsp;reg_val </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">...</span><span class="pln"><br>&nbsp;reg_val </span><span class="pun">|=</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> i</span><span class="pun">;</span><span class="pln"><br></span><span class="pun">...</span><span class="pln"><br></span></code></pre><br>
+<br>
+Это кусок выставляет в единичку i-тый бит. Следите за значениями в array. Они должны быть строго 1 или 0.<br>
+Более надёжно:<br>
+<pre class="prettyprint"><code><span class="pln"><br></span><span class="pun">...</span><span class="pln"><br>&nbsp; &nbsp;</span><span class="kwd">if</span><span class="pun">(</span><span class="pln">arry</span><span class="pun">[</span><span class="pln">i</span><span class="pun">])</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;reg_value </span><span class="pun">|=</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">&lt;&lt;</span><span class="pln"> i</span><span class="pun">;</span><span class="pln"><br></span></code></pre>
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Asmodey/"><img src="./two_74HC595_files/avatar_24x24(3).jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Asmodey/" class="author">Asmodey</a></p>
+								<ul>
+									<li class="date">24 июня 2013, 10:17</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment4116" class="imglink link"></a></li>	
+																			<li class="goto-comment-parent"><a href="http://robocraft.ru/blog/arduino/519.html#comment4114" onclick="return lsCmtTree.goToParentComment($(this));" title="Ответ на">↑</a></li>
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_4116" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_4116" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-4116">    
+    				    
+    																		
+					   					    	
+        				</div></div></div></div></div></div></div></div>    				    
+    				<div class="comment" id="comment_id_4191">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment4191"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(4191,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(4191,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_4191" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Есть ещё интересная схемотехника Daisy Chaining совмещения (зацикливания) выходных (74HC595) и входных (74HC165) решистров:<br>
+<noindex><a href="http://robots.freehostia.com/Software/ShiftRegister/ShiftRegisterBody.html" rel="nofollow">robots.freehostia.com/Software/ShiftRegister/ShiftRegisterBody.html</a></noindex>
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/4RESTER/"><img src="./two_74HC595_files/avatar_24x24(4).jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/4RESTER/" class="author">4RESTER</a></p>
+								<ul>
+									<li class="date">11 августа 2013, 23:26</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment4191" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_4191" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_4191" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-4191">    
+    				    
+    																		
+					   					        				</div></div>
+    				    
+    				<div class="comment" id="comment_id_5094">
+    												<img src="./two_74HC595_files/close.gif" alt="+" title="свернуть/развернуть" class="folding" style="display: none;">
+							<a name="comment5094"></a>							
+							<div class="voting  guest     ">
+								<div class="total">0</div>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="plus" onclick="lsVote.vote(5094,this,1,&#39;topic_comment&#39;); return false;"></a>
+								<a href="http://robocraft.ru/blog/arduino/519.html#" class="minus" onclick="lsVote.vote(5094,this,-1,&#39;topic_comment&#39;); return false;"></a>
+							</div>						
+							<div id="comment_content_id_5094" class="content ">								
+															
+								<div class="tb"><div class="tl"><div class="tr"></div></div></div>								
+								<div class="text">
+										
+					    				Для определения на какой ноге находится SS, MOSI, MISO и SCK, есть глобальные переменные<br>
+<pre class="prettyprint"><code><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">'SS: '</span><span class="pun">);</span><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">SS</span><span class="pun">);</span><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">'MOSI: '</span><span class="pun">);</span><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">MOSI</span><span class="pun">);</span><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">'MISO: '</span><span class="pun">);</span><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">MISO</span><span class="pun">);</span><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="kwd">print</span><span class="pun">(</span><span class="str">'SCK: '</span><span class="pun">);</span><span class="pln"><br></span><span class="typ">Serial</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">SCK</span><span class="pun">);</span><span class="pln"><br></span></code></pre>
+																	
+								</div>				
+								<div class="bl"><div class="bb"><div class="br"></div></div></div>
+							</div>							
+							<div class="info">
+								<a href="http://robocraft.ru/profile/Nook/"><img src="./two_74HC595_files/avatar_24x24.jpg" alt="avatar" class="avatar"></a>
+								<p><a href="http://robocraft.ru/profile/Nook/" class="author">Nook</a></p>
+								<ul>
+									<li class="date">26 апреля 2015, 11:14</li>
+																		
+									<li><a href="http://robocraft.ru/blog/arduino/519.html#comment5094" class="imglink link"></a></li>	
+																		<li class="goto-comment-child hidden"><a href="http://robocraft.ru/blog/arduino/519.html#" onclick="return lsCmtTree.goToChildComment(this);" title="Обратно к ответу">↓</a></li>
+									   																	
+								</ul>
+							</div>		
+							<div class="comment"><div class="content"><div class="text" id="comment_preview_5094" style="display: none;"></div></div></div>					
+							<div class="reply" id="reply_5094" style="display: none;"></div>	
+								
+							<div class="comment-children" id="comment-children-5094">    
+    				    
+    				        				</div></div>    
+    												
+				<span id="comment-children-0"></span>				
+				<br>
+				
+															Только зарегистрированные и авторизованные пользователи могут оставлять комментарии.<br>
+													
+			</div>
+			<!-- /Comments -->	
+
+<br><br>
+<script type="text/javascript"><!--
+google_ad_client = "pub-9788091858425972";
+/* 468x60, ������� 08.09.09 */
+google_ad_slot = "0477976619";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+		</div>
+		<!-- /Content -->
+							<!-- Sidebar -->
+		<div id="sidebar">
+			
+																						
+														<div class="block blogs">
+				<div class="tl"><div class="tr"></div></div>
+				<div class="cl"><div class="cr">
+					
+					<h1>Блоги</h1>
+					
+					<ul class="block-nav">
+						<li class="active"><strong></strong><a href="http://robocraft.ru/blog/arduino/519.html#" id="block_blogs_top" onclick="lsBlockBlogs.toggle(this,&#39;blogs_top&#39;); return false;">Топ</a><em></em></li>
+											</ul>
+					
+					<div class="block-content">
+					
+						<script language="JavaScript" type="text/javascript">
+						var lsBlockBlogs;
+						window.addEvent('domready', function() {       
+							lsBlockBlogs=new lsBlockLoaderClass();
+						});
+						</script>
+					
+										<ul class="list">
+													<li><div class="total">13.70</div><a href="http://robocraft.ru/blog/arduino/" class="stream-author">Arduino</a></li>						
+													<li><div class="total">10.37</div><a href="http://robocraft.ru/blog/computervision/" class="stream-author">Компьютерное зрение</a></li>						
+													<li><div class="total">8.03</div><a href="http://robocraft.ru/blog/ARM/" class="stream-author">ARM</a></li>						
+													<li><div class="total">5.73</div><a href="http://robocraft.ru/blog/algorithm/" class="stream-author">Программирование</a></li>						
+													<li><div class="total">5.05</div><a href="http://robocraft.ru/blog/projects/" class="stream-author">Проекты и идеи</a></li>						
+													<li><div class="total">3.04</div><a href="http://robocraft.ru/blog/RoboCraft/" class="stream-author">RoboCraft</a></li>						
+													<li><div class="total">2.37</div><a href="http://robocraft.ru/blog/technology/" class="stream-author">Технологии</a></li>						
+													<li><div class="total">2.27</div><a href="http://robocraft.ru/blog/mechanics/" class="stream-author">Механика</a></li>						
+													<li><div class="total">2.26</div><a href="http://robocraft.ru/blog/electronics/" class="stream-author">Электроника</a></li>						
+													<li><div class="total">1.55</div><a href="http://robocraft.ru/blog/news/" class="stream-author">Новости</a></li>						
+													<li><div class="total">1.14</div><a href="http://robocraft.ru/blog/communication/" class="stream-author">Коммуникации</a></li>						
+													<li><div class="total">1.13</div><a href="http://robocraft.ru/blog/beam/" class="stream-author">BEAM роботы</a></li>						
+													<li><div class="total">0.00</div><a href="http://robocraft.ru/blog/sensor/" class="stream-author">Сенсоры и датчики</a></li>						
+											</ul>				
+					</div>
+					
+					<div class="right"><a href="http://robocraft.ru/blogs/">Все блоги</a></div>
+
+					
+				</div></div>
+				<div class="bl"><div class="br"></div></div>
+			</div> 
+															
+																			
+														<div class="block stream">
+
+				<div class="tl"><div class="tr"></div></div>
+				<div class="cl"><div class="cr">
+					
+					<h1>Прямой эфир</h1>
+					
+					<ul class="block-nav">						
+						<li><strong></strong><a href="http://robocraft.ru/blog/arduino/519.html#" id="block_stream_topic" onclick="lsBlockStream.toggle(this,&#39;topic_stream&#39;); return false;">Публикации</a></li>
+						<li class="active"><a href="http://robocraft.ru/blog/arduino/519.html#" id="block_stream_comment" onclick="lsBlockStream.toggle(this,&#39;comment_stream&#39;); return false;">Комментарии</a><em></em></li>
+					</ul>					
+					
+					<div class="block-content">
+					
+						<script language="JavaScript" type="text/javascript">
+						var lsBlockStream;
+						window.addEvent('domready', function() { 
+							lsBlockStream=new lsBlockLoaderClass();      						
+						});
+						</script>
+					
+										<ul class="stream-content">
+													<li class="even">
+								<a href="http://robocraft.ru/profile/nonalcogolic/" class="stream-author">nonalcogolic</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/electronics/772.html#comment5299" class="stream-comment">Ультразвуковой датчик измерения расстояния HC-SR04</a>
+								<span> 49</span> в <a href="http://robocraft.ru/blog/electronics/" class="stream-blog">Электроника</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/admin/" class="stream-author">admin</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/algorithm/560.html#comment5298" class="stream-comment">Нейронная сеть - обучение ИНС с помощью алгоритма обратного распространения</a>
+								<span> 12</span> в <a href="http://robocraft.ru/blog/algorithm/" class="stream-blog">Программирование</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/victoruni/" class="stream-author">victoruni</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/3088.html#comment5296" class="stream-comment">Ethernet-модуль датчиков на Arduino и web-интерфейс для множества таких модулей</a>
+								<span> 17</span> в <a href="http://robocraft.ru/my/victoruni/" class="stream-blog">Блог им. victoruni</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/Annihilate/" class="stream-author">Annihilate</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/computervision/506.html#comment5294" class="stream-comment">OpenCV - Сравнение изображений и генерация картинки отличий</a>
+								<span> 6</span> в <a href="http://robocraft.ru/blog/computervision/" class="stream-blog">Компьютерное зрение</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/arno/" class="stream-author">arno</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/news/3439.html#comment5292" class="stream-comment">Военные США протестировали рой из маленьких дронов</a>
+								<span> 1</span> в <a href="http://robocraft.ru/blog/news/" class="stream-blog">Новости</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/maxfaks/" class="stream-author">maxfaks</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/projects/345.html#comment5290" class="stream-comment">Управляемая веб-камера или же web-cam-бот</a>
+								<span> 20</span> в <a href="http://robocraft.ru/blog/projects/" class="stream-blog">Проекты и идеи</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/sasha/" class="stream-author">sasha</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/electronics/3131.html#comment5284" class="stream-comment">Raspberry Pi. Установка и настройка комплекта MTC Коннект 4 (модем Huawei E171) на Raspbian</a>
+								<span> 21</span> в <a href="http://robocraft.ru/blog/electronics/" class="stream-blog">Электроника</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/hax/" class="stream-author">hax</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/3357.html#comment5279" class="stream-comment">Самодельный робот-пылесос v. 2.0. Часть 2: Электроника, схема, скетч и видео</a>
+								<span> 9</span> в <a href="http://robocraft.ru/my/nitrior/" class="stream-blog">Блог им. nitrior</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/divan/" class="stream-author">divan</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/ARM/644.html#comment5278" class="stream-comment">Знакомство с ARM Cortex-M3 и с STM32, в частности</a>
+								<span> 21</span> в <a href="http://robocraft.ru/blog/ARM/" class="stream-blog">ARM</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/GraninDm/" class="stream-author">GraninDm</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/3126.html#comment5277" class="stream-comment">Программируемый логический контроллер (ПЛК) на базе Arduino + Ethernet shield + 74HC165 + 74HC595</a>
+								<span> 10</span> в <a href="http://robocraft.ru/my/GraninDm/" class="stream-blog">Блог им. GraninDm</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/gabitov19/" class="stream-author">gabitov19</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/3002.html#comment5275" class="stream-comment">LAN тестер. Полезное  устройство своими руками</a>
+								<span> 38</span> в <a href="http://robocraft.ru/my/Ghost_D/" class="stream-blog">Блог им. Ghost_D</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/Kust75/" class="stream-author">Kust75</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/RoboCraft/3283.html#comment5274" class="stream-comment">РобоКрафт - новый логотип и фирменный стиль</a>
+								<span> 5</span> в <a href="http://robocraft.ru/blog/RoboCraft/" class="stream-blog">RoboCraft</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/Martin/" class="stream-author">Martin</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/745.html#comment5273" class="stream-comment">Использование метода кросс-корреляции для определения скоростей</a>
+								<span> 6</span> в <a href="http://robocraft.ru/my/aivanov/" class="stream-blog">Блог им. aivanov</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/miltrix/" class="stream-author">miltrix</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/arduino/68.html#comment5272" class="stream-comment">Практическое программирование Arduino/CraftDuino - фоторезистор</a>
+								<span> 6</span> в <a href="http://robocraft.ru/blog/arduino/" class="stream-blog">Arduino</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/Zoltberg/" class="stream-author">Zoltberg</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/arduino/1035.html#comment5271" class="stream-comment">Разновидности плат Arduino, а также про клоны, оригиналы и совместимость</a>
+								<span> 4</span> в <a href="http://robocraft.ru/blog/arduino/" class="stream-blog">Arduino</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/admin/" class="stream-author">admin</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/RoboCraft/3364.html#comment5270" class="stream-comment">Конкурс КиберВесна 2015 завершён!</a>
+								<span> 15</span> в <a href="http://robocraft.ru/blog/RoboCraft/" class="stream-blog">RoboCraft</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/Shihad/" class="stream-author">Shihad</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/news/3419.html#comment5269" class="stream-comment">TreeRover - робот для высадки деревьев</a>
+								<span> 1</span> в <a href="http://robocraft.ru/blog/news/" class="stream-blog">Новости</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/Kust75/" class="stream-author">Kust75</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/arduino/2923.html#comment5268" class="stream-comment">ArduinoDroid – Arduino IDE для ОС Android</a>
+								<span> 12</span> в <a href="http://robocraft.ru/blog/arduino/" class="stream-blog">Arduino</a>
+							</li>						
+													<li class="even">
+								<a href="http://robocraft.ru/profile/Kust75/" class="stream-author">Kust75</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/arduino/3393.html#comment5266" class="stream-comment">Как сделать самодельный шилд для Arduino</a>
+								<span> 1</span> в <a href="http://robocraft.ru/blog/arduino/" class="stream-blog">Arduino</a>
+							</li>						
+													<li>
+								<a href="http://robocraft.ru/profile/altsalts/" class="stream-author">altsalts</a>&nbsp;→
+								<span class="stream-comment-icon"></span><a href="http://robocraft.ru/blog/arduino/714.html#comment5264" class="stream-comment">Ошибки Arduino</a>
+								<span> 5</span> в <a href="http://robocraft.ru/blog/arduino/" class="stream-blog">Arduino</a>
+							</li>						
+										
+					</ul>
+					</div>
+					<div class="right"><a href="http://robocraft.ru/comments/">Весь эфир</a> | <a href="http://robocraft.ru/rss/allcomments/">RSS</a></div>
+
+					
+				</div></div>
+				<div class="bl"><div class="br"></div></div>
+			</div>
+ 
+															
+																			
+														<div class="block tags">
+				<div class="tl"><div class="tr"></div></div>
+				<div class="cl"><div class="cr">
+					
+					<ul class="cloud">
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/3D/">3D</a></li>	
+													<li><a class="w4" rel="tag" href="http://robocraft.ru/tag/3D-%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/">3D-печать</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/Android/">Android</a></li>	
+													<li><a class="w10" rel="tag" href="http://robocraft.ru/tag/Arduino/">Arduino</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/ARM/">ARM</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/AVR/">AVR</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/Blink/">Blink</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/bluetooth/">bluetooth</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/COM-%D0%BF%D0%BE%D1%80%D1%82/">COM-порт</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/CraftDuino/">CraftDuino</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/DARPA/">DARPA</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/DIY/">DIY</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/embedded/">embedded</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/IDE/">IDE</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/iRobot/">iRobot</a></li>	
+													<li><a class="w4" rel="tag" href="http://robocraft.ru/tag/Kinect/">Kinect</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/LEGO/">LEGO</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/Linux/">Linux</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/Open%20Source/">Open Source</a></li>	
+													<li><a class="w5" rel="tag" href="http://robocraft.ru/tag/OpenCV/">OpenCV</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/PR2/">PR2</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/Processing/">Processing</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/Python/">Python</a></li>	
+													<li><a class="w5" rel="tag" href="http://robocraft.ru/tag/Raspberry%20Pi/">Raspberry Pi</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/RoboCraft/">RoboCraft</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/Roomba/">Roomba</a></li>	
+													<li><a class="w6" rel="tag" href="http://robocraft.ru/tag/ROS/">ROS</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/swarm/">swarm</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/TurtleBot/">TurtleBot</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/Urbi/">Urbi</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/web-%D0%BA%D0%B0%D0%BC%D0%B5%D1%80%D0%B0/">web-камера</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F/">автоматизация</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/%D0%B0%D0%BD%D0%B4%D1%80%D0%BE%D0%B8%D0%B4/">андроид</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C/">балансировать</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B0/">библиотека</a></li>	
+													<li><a class="w5" rel="tag" href="http://robocraft.ru/tag/%D0%B1%D0%B8%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0/">бионика</a></li>	
+													<li><a class="w4" rel="tag" href="http://robocraft.ru/tag/%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F/">версия</a></li>	
+													<li><a class="w5" rel="tag" href="http://robocraft.ru/tag/%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE/">видео</a></li>	
+													<li><a class="w5" rel="tag" href="http://robocraft.ru/tag/%D0%B2%D0%BE%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9/">военный</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81/">вопрос</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/%D0%B4%D0%B0%D1%82%D1%87%D0%B8%D0%BA/">датчик</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%B4%D1%80%D0%BE%D0%BD/">дрон</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%B7%D1%80%D0%B5%D0%BD%D0%B8%D0%B5/">зрение</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D0%B8%D0%B3%D1%80%D0%B0/">игра</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/%D0%98%D0%9A/">ИК</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82/">интернет</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%BA%D0%B0%D0%BC%D0%B5%D1%80%D0%B0/">камера</a></li>	
+													<li><a class="w6" rel="tag" href="http://robocraft.ru/tag/%D0%BA%D0%B8%D0%B1%D0%B5%D1%80%D0%B2%D0%B5%D1%81%D0%BD%D0%B0/">кибервесна</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81/">конкурс</a></li>	
+													<li><a class="w4" rel="tag" href="http://robocraft.ru/tag/%D0%BC%D0%B0%D0%BD%D0%B8%D0%BF%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80/">манипулятор</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D0%BC/">начинающим</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/%D0%BD%D0%B0%D1%88%D0%B5/">наше</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D0%9F%D0%9A%D0%9B/">ПКЛ</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%BF%D0%BE%D0%B4%D0%B2%D0%BE%D0%B4%D0%BD%D1%8B%D0%B9/">подводный</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%BF%D1%8B%D0%BB%D0%B5%D1%81%D0%BE%D1%81/">пылесос</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0/">работа</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D1%80%D0%B0%D0%B4%D0%B8%D0%BE%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5/">радиоуправление</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/">распознавание</a></li>	
+													<li><a class="w10" rel="tag" href="http://robocraft.ru/tag/%D1%80%D0%BE%D0%B1%D0%BE%D1%82/">робот</a></li>	
+													<li><a class="w5" rel="tag" href="http://robocraft.ru/tag/%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0/">робототехника</a></li>	
+													<li><a class="w1" rel="tag" href="http://robocraft.ru/tag/%D1%80%D1%83%D0%BA%D0%B0/">рука</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D1%81%D0%B2%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D0%BE%D0%B4/">светодиод</a></li>	
+													<li><a class="w6" rel="tag" href="http://robocraft.ru/tag/%D1%81%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%BA%D0%B0/">сервомашинка</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D1%82%D0%B5%D0%BB%D0%B5%D0%BF%D1%80%D0%B8%D1%81%D1%83%D1%82%D1%81%D1%82%D0%B2%D0%B8%D0%B5/">телеприсутствие</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D0%A3%D0%97/">УЗ</a></li>	
+													<li><a class="w4" rel="tag" href="http://robocraft.ru/tag/%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5/">управление</a></li>	
+													<li><a class="w2" rel="tag" href="http://robocraft.ru/tag/%D1%83%D1%80%D0%BE%D0%BA/">урок</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%8C/">ходить</a></li>	
+													<li><a class="w4" rel="tag" href="http://robocraft.ru/tag/%D1%88%D0%B0%D0%B3%20%D0%B7%D0%B0%20%D1%88%D0%B0%D0%B3%D0%BE%D0%BC/">шаг за шагом</a></li>	
+													<li><a class="w3" rel="tag" href="http://robocraft.ru/tag/%D1%88%D0%B8%D0%BB%D0%B4/">шилд</a></li>	
+											</ul>
+					
+				</div></div>
+				<div class="bl"><div class="br"></div></div>
+			</div> 
+															
+							
+					
+			
+		</div>
+		<!-- /Sidebar -->				
+	</div>
+
+<!-- Footer -->
+<div id="footer">
+
+	<ul class="footer-list">
+				<li class="footer-list-header word-wrap">Вы можете</li>
+		<li><a class="js-registration-form-show" href="http://robocraft.ru/registration/">Зарегистрироваться</a></li>
+		<li><a class="js-login-form-show sign-in" href="http://robocraft.ru/login/">Войти</a></li>
+			</ul>
+	
+	<ul class="footer-list">
+		<li class="footer-list-header">Разделы</li>
+		<li><a href="http://robocraft.ru/">Топики</a></li>
+		<li><a href="http://robocraft.ru/blogs/">Блоги</a></li>
+		<li><a href="http://robocraft.ru/people/">Люди</a></li>
+		<li><a href="http://robocraft.ru/shop/">Наш Магазин</a></li>
+		<li><a href="http://robocraft.ru/forum/">Форум</a></li>
+	</ul>
+	
+	<ul class="footer-list">
+		<li class="footer-list-header">Инфо</li>
+		<li><a href="http://robocraft.ru/page/about/">О сайте</a></li>
+		<li><a href="http://robocraft.ru/page/about/#rules">Правила</a></li>
+		<li><a href="http://robocraft.ru/page/summary/">Статьи</a></li>
+		<li><a href="http://robocraft.ru/page/faq/">FAQ</a></li>
+	</ul>
+	
+	<ul class="footer-list">
+		<li class="footer-list-header">Купить</li>
+		<li><a href="http://robocraft.ru/shop/index.php?route=product/category&path=47_26" target="_blank">Arduino или CraftDuino</a></li>
+		<li><a href="http://robocraft.ru/shop/index.php?route=product/category&path=47_27" target="_blank">Arduino шилды</a></li>
+		<li><a href="http://robocraft.ru/shop/index.php?route=product/category&path=18_35" target="_blank">Cервомашинки</a></li>
+		<li><a href="http://robocraft.ru/shop/index.php?route=product/category&path=29" target="_blank">Наборы</a></li>
+		<li><a href="http://robocraft.ru/shop/index.php?route=product/category&path=62" target="_blank">MakeBlock</a></li>
+	</ul>
+
+	<div class="copyright">
+	© Сайт работает на <a href="http://livestreet.ru/" target="_blank">LiveStreet</a>
+		<div>
+			© 2009-2015
+		</div>
+		<div>
+
+<!--Rating@Mail.ru counter-->
+<script type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer);js=10;//--></script>
+<script language="javascript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled();js=11;//--></script>
+<script language="javascript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height;
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth);js=12;//--></script>
+<script language="javascript1.3" type="text/javascript"><!--
+js=13;//--></script><script language="javascript" type="text/javascript"><!--
+d.write('<a href="http://top.mail.ru/jump?from=1656615" target="_top">'+
+'<img src="http://d7.c4.b9.a1.top.mail.ru/counter?id=1656615;t=94;js='+js+
+a+';rand='+Math.random()+'" alt="Рейтинг@Mail.ru" border="0" '+
+'height="18" width="88"><\/a>');if(11<js)d.write('<'+'!-- ');//--></script><a href="http://top.mail.ru/jump?from=1656615" target="_top"><img src="./two_74HC595_files/counter" alt="Рейтинг@Mail.ru" border="0" height="18" width="88"></a><!-- 
+<noscript><a target="_top" href="http://top.mail.ru/jump?from=1656615">
+<img src="http://d7.c4.b9.a1.top.mail.ru/counter?js=na;id=1656615;t=94" 
+height="18" width="88" border="0" alt="Рейтинг@Mail.ru"></a></noscript>
+<script language="javascript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>');//-->
+<!--// Rating@Mail.ru counter-->
+
+		&nbsp;				 	
+		<a href="http://idea2.ru/" title="Идеи 2.0" target="_blank"><img src="./two_74HC595_files/i2.png"></a>&nbsp;
+		<a href="http://robocraft.ru/" title="RoboCraft" target="_blank"><img src="./two_74HC595_files/rc.png"></a>		
+		</div>
+	</div>
+
+	<div>Материалы сайта являются авторскими. Копирование и публикация материалов без разрешения запрещены! &nbsp;
+	</div>
+		
+</div>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./two_74HC595_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-12745905-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+
+
+</div></body></html>
