@@ -1,0 +1,174 @@
+/*
+Theme name:     Twenty Twelve Child
+Description:    Дочерняя тема для темы Twenty Twelve
+Author:         juntatalor
+Template:       twentytwelve
+Version:        1.0.0
+*/
+
+@import url("../twentytwelve/style.css");
+
+footer[role="contentinfo"] {
+    border-top: 4px solid #60A3A5; 
+}
+
+#post-235, #post-751 {
+    border-bottom: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.site-content article {
+    border-bottom: 4px solid #60A3A5;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #60A3A5;
+    color: #000;
+    border-radius: 0px;
+    border-color: #60A3A5;
+    margin-left: 10px;
+    background-image: none;
+}
+
+body .site {
+    background-color: #e6e6e6;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price {
+    color: #456085;
+    font-weight: bold;
+}
+
+.woocommerce-page ul.products li.product h3, .woocommerce ul.products li.product h3 {
+    color: #282828;
+}
+
+.widget-area .widget h3 {
+    /* background-color: #FF777B;*/
+    background-color: #60A3A5; 
+    font-size: large;
+    color: #282828;
+    padding-left: 20px;
+}
+
+.widget-area .widget a, .widget-area .widget a:visited, .main-navigation li a, .main-navigation li a:visited {
+    color: #282828;
+}
+
+.main-navigation li a {
+    font-size: larger;
+}
+
+.main-navigation li {
+    margin-right: 20px;
+}
+
+.widget-area .widget a {
+    padding-left: 20px;
+}
+
+.widget-area .widget {
+    /* background-color: #F1757D; */
+    background-color: #70C1C4;
+    margin-bottom: 10px;
+}
+
+.term-description, .orderby, .woocommerce-result-count {
+    display:none;
+    height: 0px;
+}
+
+.main-navigation {
+    /* background-color: #44BAA4; */
+    background-color: #60A3A5;
+    font-size: xx-large;
+}
+
+.main-navigation ul.nav-menu {
+    border-bottom: none;
+    border-top: none;
+    padding-left: 20px;
+}
+
+.page-title {
+    display:none;
+}
+
+.woocommerce .woocommerce-breadcrumb, .woocommerce-page .woocommerce-breadcrumb {
+    padding-left: 10px;
+    */ background-color: #60A3A5; */
+    font-size: 20px;
+    color: #282828;
+    margin-bottom: 0px;
+}
+
+
+/* #primary {
+    width: 73%;
+}
+*/
+
+#searchform {
+    padding-top: 5px;
+    padding-left: 10px;
+     
+}
+
+.widget_product_search {
+   height: 40px;
+}
+
+.widget_search {
+   height: 40px;
+}
+
+#h1_featured {
+    /* background-color: #60A3A5; */
+    font-size: 27px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    color: #282828;
+    margin-top: -24px;
+    margin-bottom: 0px;
+}
+
+.woocommerce ul.products, .woocommerce-page ul.products {
+    /* background-color: #70C1C4; */
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+/*
+* Раздел "Похожие товары", уменьшение размера картинок
+*/
+.woocommerce .related ul li.product, .woocommerce .related ul.products li.product, .woocommerce .upsells.products ul li.product, .woocommerce .upsells.products ul.products li.product, .woocommerce-page .related ul li.product, .woocommerce-page .related ul.products li.product, .woocommerce-page .upsells.products ul li.product, .woocommerce-page .upsells.products ul.products li.product {
+	width: 30%;
+}
+
+/*
+* Размер картинок товара в каталоге
+*/
+.woocommerce ul.products li.product {
+	width: 20%;
+}
+
+/*
+* Выделение конкурса
+*/
+.menu-item-1483 > a {
+	color: red !important;
+}
+
+/*
+* Уменьшение отступа
+*/
+.wrapper {
+	margin-top: -40px !important;
+}
+
+/* .col2-set { display:none !important; ) */

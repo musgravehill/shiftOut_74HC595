@@ -1,17 +1,21 @@
 /*
 Shift registers at 74HC595
  */
-int latchPin = 8;//ST_CP of 74HC595
-int clockPin = 12; //SH_CP of 74HC595
-int dataPin = 11; //DS of 74HC595
+ 
+int dataPin = 3; //DS of 74HC595
+int latchPin = 4;//ST_CP of 74HC595
+int clockPin = 5; //SH_CP of 74HC595
 
-uint8_t dataArraySize = 6;
+
+const uint8_t dataArraySize = 6;
 byte dataByte;
 byte dataArray[dataArraySize];
 
 void setup() {  
-  pinMode(latchPin, OUTPUT);  
-  
+  pinMode(dataPin, OUTPUT);  
+  pinMode(latchPin, OUTPUT); 
+  pinMode(clockPin, OUTPUT); 
+
   dataArray[0] = 0b10000000;
   dataArray[1] = 0b01000000;
   dataArray[2] = 0b00100000;
@@ -26,7 +30,8 @@ void loop() {
   for (int j = 0; j < dataArraySize; j++) {    
     dataByte = dataArray[j];    
     digitalWrite(latchPin, 0);    
-    shiftOut(dataPin, clockPin, MSBFIRST, dataByte);    
+    //MSBFIRST,LSBFIRST (Most Significant Bit First, or, Least Significant Bit First) 
+    shiftOut(dataPin, clockPin, LSBFIRST, dataByte);    
     digitalWrite(latchPin, 1);
     delay(300);
   }
@@ -91,6 +96,7 @@ void testBlinkAll(uint16_t d) {
   digitalWrite(latchPin, 1);
   delay(d);
 }
+
 
 
 
