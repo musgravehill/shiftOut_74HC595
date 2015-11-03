@@ -1,0 +1,2517 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0040)http://vrtp.ru/index.php?showtopic=24571 -->
+<html xml:lang="ru" lang="ru" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251"> 
+<title>VRTP -&gt; Семисегментный индикатор на 74hc595</title>
+ 
+<meta name="keywords" content="антенна длинна волны направленная ненаправленная диполь спиральная магнитная квадрат решетка штыревая телескопическая транзистор биполярный полевой кремневый германиевый диод детектор мост ограничитель барьер шотки импульсный резистор типоразмер переменный постоянный подстрочный конденсатор электролитический неполярный полярный проходной микросхема микросборка оу триггер стандарт логика процессор pik компонент контур индуктивность дроссель катушка намотка добротность микрофон электретный конденсаторный механический угольный  магнитный корпус экран экранировка каскад усиление умножения деления делитель умножитель удвоитель 100% наушник динамик пч частота вч генератор трехточка колпица кварц резонатор пав  стабильность монтаж свч радиоволна радио промежуточная частота девиация ток напряжение потребление приборы технология связь статьи радио детали наборы измерительная техника материалы спец техника законодательство пирацкое  начинающим софт промэлектроника безопасность скрытность средства укв кв св дв защита информация промышленный шпионаж подслушать подсмотреть видеопередатчик радиомикрофоны глушилки элементы узлы радиопередатчиков устройство съем информация телефон линия средства документирования узконаправленные игольчатые аудио видео вход выход видео наблюдения спец приемники мгц 100мгц 433мгц 418мгц 1000мгц 900мгц 800мгц 90мгц 50мгц паять паяльник флюс канифоль припой настройка vox  сшп ару конвертор согласование система компрессор трансивер приемник синтезатор мощность описание блок питания стереокодер стереодекодер кодер декодер шина резонанс период колебания печатная плата дорожки пайка осциллограф мультиметр щуп делитель пробник частотомер напряженность поля стабилизация цифровая шкала радиозакладка закладка излучения анализатор измеритель информация аппаратура измерения инфразвук ультразвук сверхдальняя стабилитрон варикап bugs спец ретранслятор лазерный справочник защита лазер фильтр 
+">
+<meta name="description" content="сайт о спецтехнике">
+<style type="text/css">
+html { overflow-x: auto; } 
+/* Body entry, change forum page background colour, default font, font size, etc. Leave text-align:center to center board content
+   #ipwrapper will set text-align back to left for the forum. Any other tables / divs you use must use text-align:left to re-align
+   the content properly. This is a work around to a known Internet Explorer bug */
+
+BODY { font-family: Verdana, Tahoma, Arial, sans-serif; font-size: 11px; color: #000; margin:0px;padding:0px;background-color:#FFF; text-align:center }
+
+TABLE, TR, TD { font-family: Verdana, Tahoma, Arial, sans-serif; font-size: 11px; color: #000; }
+
+
+
+/* MAIN WRAPPER: Adjust forum width here. Leave margins alone to auto-center content */
+
+#ipbwrapper { text-align:left; width:95%; margin-left:auto;margin-right:auto }
+
+
+
+a:link, a:visited, a:active { text-decoration: underline; color: #000 }
+
+a:hover { color: #465584; text-decoration:underline }
+
+
+
+fieldset.search { padding:6px; line-height:150% }
+
+label      { cursor:pointer; }
+
+form       { display:inline; }
+
+img        { vertical-align:middle; border:0px }
+
+img.attach { border:2px outset #EEF2F7;padding:2px }
+
+
+
+.googleroot  { padding:6px; line-height:130% }
+
+.googlechild { padding:6px; margin-left:30px; line-height:130% }
+
+.googlebottom, .googlebottom a:link, .googlebottom a:visited, .googlebottom a:active { font-size:11px; color: #3A4F6C; }
+
+.googlish, .googlish a:link, .googlish a:visited, .googlish a:active { font-size:14px; font-weight:bold; color:#00D; }
+
+.googlepagelinks { font-size:1.1em; letter-spacing:1px }
+
+.googlesmall, .googlesmall a:link, .googlesmall a:active, .googlesmall a:visited { font-size:10px; color:#434951 }
+
+
+
+li.helprow { padding:0px; margin:0px 0px 10px 0px }
+
+ul#help    { padding:0px 0px 0px 15px }
+
+
+
+option.cat { font-weight:bold; }
+
+option.sub { font-weight:bold;color:#555 }
+
+.caldate   { text-align:right;font-weight:bold;font-size:11px;color:#777;background-color:#DFE6EF;padding:4px;margin:0px }
+
+
+
+.warngood { color:green }
+
+.warnbad  { color:red }
+
+
+
+#padandcenter { margin-left:auto;margin-right:auto;text-align:center;padding:14px 0px 14px 0px }
+
+
+
+#profilename { font-size:28px; font-weight:bold; }
+
+#calendarname { font-size:22px; font-weight:bold; }
+
+
+
+#photowrap { padding:6px; }
+
+#phototitle { font-size:24px; border-bottom:1px solid black }
+
+#photoimg   { text-align:center; margin-top:15px } 
+
+
+
+#ucpmenu    { line-height:150%;width:22%; border:1px solid #345487;background-color: #F5F9FD }
+
+#ucpmenu p  { padding:2px 5px 6px 9px;margin:0px; }
+
+#ucpcontent { background-color: #F5F9FD; border:1px solid #345487;line-height:150%; width:auto }
+
+#ucpcontent p  { padding:10px;margin:0px; }
+
+
+
+#ipsbanner { position:absolute;top:1px;right:5%; }
+
+#logostrip { border:1px solid #345487;background-color: #3860BB;background-image:url(style_images/1/tile_back.gif);padding:0px;margin:0px; }
+
+#submenu   { border:1px solid #BCD0ED;background-color: #DFE6EF;font-size:10px;margin:3px 0px 3px 0px;color:#3A4F6C;font-weight:bold;}
+
+#submenu a:link, #submenu  a:visited, #submenu a:active { font-weight:bold;font-size:10px;text-decoration: none; color: #3A4F6C; }
+
+#userlinks { border:1px solid #C2CFDF; background-color: #F0F5FA }
+
+
+
+#navstrip  { font-weight:bold;padding:6px 0px 6px 0px; }
+
+
+
+.activeuserstrip { background-color:#BCD0ED; padding:6px }
+
+
+
+/* Form stuff (post / profile / etc) */
+
+.pformstrip { background-color: #D1DCEB; color:#3A4F6C;font-weight:bold;padding:7px;margin-top:1px }
+
+.pformleft  { background-color: #F5F9FD; padding:6px; margin-top:1px;width:25%; border-top:1px solid #C2CFDF; border-right:1px solid #C2CFDF; }
+
+.pformleftw { background-color: #F5F9FD; padding:6px; margin-top:1px;width:40%; border-top:1px solid #C2CFDF; border-right:1px solid #C2CFDF; }
+
+.pformright { background-color: #F5F9FD; padding:6px; margin-top:1px;border-top:1px solid #C2CFDF; }
+
+
+
+/* Topic View elements */
+
+.signature   { font-size: 10px; color: #339; line-height:150% }
+
+.postdetails { font-size: 10px }
+
+.postcolor   { font-size: 12px; line-height: 160% }
+
+
+
+.normalname { font-size: 12px; font-weight: bold; color: #003 }
+
+.normalname a:link, .normalname a:visited, .normalname a:active { font-size: 12px }
+
+.unreg { font-size: 11px; font-weight: bold; color: #900 }
+
+
+
+.post1 { background-color: #F5F9FD }
+
+.post2 { background-color: #EEF2F7 }
+
+.postlinksbar { background-color:#D1DCEB;padding:7px;margin-top:1px;font-size:10px; background-image: url(style_images/1/tile_sub.gif) }
+
+
+
+/* Common elements */
+
+.row1 { background-color: #F5F9FD }
+
+.row2 { background-color: #DFE6EF }
+
+.row3 { background-color: #EEF2F7 }
+
+.row4 { background-color: #E4EAF2 }
+
+
+
+.darkrow1 { background-color: #C2CFDF; color:#4C77B6; }
+
+.darkrow2 { background-color: #BCD0ED; color:#3A4F6C; }
+
+.darkrow3 { background-color: #D1DCEB; color:#3A4F6C; }
+
+
+
+.hlight { background-color: #DFE6EF }
+
+.dlight { background-color: #EEF2F7 }
+
+
+
+.titlemedium { font-weight:bold; color:#3A4F6C; padding:7px; margin:0px; background-image: url(style_images/1/tile_sub.gif) }
+
+.titlemedium  a:link, .titlemedium  a:visited, .titlemedium  a:active  { text-decoration: underline; color: #3A4F6C }
+
+
+
+/* Main table top (dark blue gradient by default) */
+
+.maintitle { vertical-align:middle;font-weight:bold; color:#FFF; padding:8px 0px 8px 5px; background-image: url(style_images/1/tile_back.gif) }
+
+.maintitle a:link, .maintitle  a:visited, .maintitle  a:active { text-decoration: none; color: #FFF }
+
+.maintitle a:hover { text-decoration: underline }
+
+
+
+/* tableborders gives the white column / row lines effect */
+
+.plainborder { border:1px solid #345487;background-color:#F5F9FD }
+
+.tableborder { border:1px solid #345487;background-color:#FFF; padding:0; margin:0 }
+
+.tablefill   { border:1px solid #345487;background-color:#F5F9FD;padding:6px;  }
+
+.tablepad    { background-color:#F5F9FD;padding:6px }
+
+.tablebasic  { width:100%; padding:0px 0px 0px 0px; margin:0px; border:0px }
+
+
+
+.wrapmini    { float:left;line-height:1.5em;width:25% }
+
+.pagelinks   { float:left;line-height:1.2em;width:35% }
+
+
+
+.desc { font-size:10px; color:#434951 }
+
+.edit { font-size: 9px }
+
+
+
+
+
+.searchlite { font-weight:bold; color:#F00; background-color:#FF0 }
+
+
+
+#QUOTE { white-space:normal; font-family: Verdana, Arial; font-size: 11px; color: #465584; background-color: #FAFCFE; border: 1px solid #000; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px }
+
+#SPOILER { font-family: Verdana, Arial; font-size: 8pt; color: #FAFCFE; background-color: #FAFCFE; border: 1px solid Black; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px }
+
+#CODE  { white-space:normal; font-family: Courier, Courier New, Verdana, Arial;  font-size: 11px; color: #465584; background-color: #FAFCFE; border: 1px solid #000; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px }
+
+
+
+.copyright { font-family: Verdana, Tahoma, Arial, Sans-Serif; font-size: 9px; line-height: 12px }
+
+
+
+.codebuttons  { font-size: 10px; font-family: verdana, helvetica, sans-serif; vertical-align: middle }
+
+.forminput, .textinput, .radiobutton, .checkbox  { font-size: 11px; font-family: verdana, helvetica, sans-serif; vertical-align: middle }
+
+
+
+.thin { padding:6px 0px 6px 0px;line-height:140%;margin:2px 0px 2px 0px;border-top:1px solid #FFF;border-bottom:1px solid #FFF }
+
+
+
+.purple { color:purple;font-weight:bold }
+
+.red    { color:red;font-weight:bold }
+
+.green  { color:green;font-weight:bold }
+
+.blue   { color:blue;font-weight:bold }
+
+.orange { color:#F90;font-weight:bold }
+</style> 
+ 
+</head> 
+<body>
+<div id="ipbwrapper">
+<div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0" background="http://vrtp.ru/banner/banbg.gif" height="130"><tbody><tr><td>
+<param name="SRC" value="banner.swf">
+<embed src="http://vrtp.ru/banner/banner.swf" pluginspage="http://www.macromedia.com/shockwave/download/" type="application/x-shockwave-flash" width="1024" height="130">
+    
+   
+</td></tr></tbody></table></div>
+<div class="maintitle" id="navstrip" align="left"><img src="./best_practice_files/nav.gif" border="0" alt="&gt;">&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=home">Главная страница</a>&nbsp;-&gt;&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=idx">VRTP</a>&nbsp;-&gt;&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=SC&c=12">Texнологии</a>&nbsp;-&gt;&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showforum=64">Микропроцессоры.</a>&nbsp;-&gt;&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showforum=105">AVR фирмы Atmel.</a></div> 
+  <table width="100%" id="userlinks" cellspacing="6">
+   <tbody><tr>
+    <td>Здравствуйте Гость ( <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Login&CODE=00">Вход</a> | <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Reg&CODE=00">Регистрация</a> )</td>
+    <td align="right"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Reg&CODE=reval">Выслать повторно письмо для активации</a></td>
+   </tr>
+  </tbody></table> 
+<table width="100%" border="0"><tbody><tr valign="top"><td width="180">
+<script type="text/javascript" async="" src="./best_practice_files/aci.js"></script><script language="JavaScript" type="text/javascript">
+<!--
+function buddy_pop() { window.open('index.php?act=buddy&s=5ff4e3f5790505618cb5c7a481e83c6e','BrowserBuddy','width=250,height=500,resizable=yes,scrollbars=yes'); }
+function chat_pop(cw,ch)  { window.open('index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=chat&pop=1','Chat','width='+cw+',height='+ch+',resizable=yes,scrollbars=yes'); }
+function multi_page_jump( url_bit, total_posts, per_page )
+{
+pages = 1; cur_st = parseInt(""); cur_page  = 1;
+if ( total_posts % per_page == 0 ) { pages = total_posts / per_page; }
+ else { pages = Math.ceil( total_posts / per_page ); }
+msg = "Введите номер страницы, к которой хотите перейти." + " " + pages;
+if ( cur_st > 0 ) { cur_page = cur_st / per_page; cur_page = cur_page -1; }
+show_page = 1;
+if ( cur_page < pages )  { show_page = cur_page + 1; }
+if ( cur_page >= pages ) { show_page = cur_page - 1; }
+ else { show_page = cur_page + 1; }
+userPage = prompt( msg, show_page );
+if ( userPage > 0  ) {
+	if ( userPage < 1 )     {    userPage = 1;  }
+	if ( userPage > pages ) { userPage = pages; }
+	if ( userPage == 1 )    {     start = 0;    }
+	else { start = (userPage - 1) * per_page; }
+	window.location = url_bit + "&st=" + start;
+}
+}
+//-->
+</script>
+<div class="tableborder">
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+<tbody><tr><td colspan="2" class="maintitle"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=home">Главная</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Help">Помощь</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Search&f=105">Поиск по форуму</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=idx">Форум</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=gallery">Фотогаллерея</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=boardrules">Контакты</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=links">Ссылки</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=artsearch">Поиск по статьям</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib">Библиотека</a></td></tr>
+<tr class="row4"><td><noindex><a href="http://kroks.ru/">Магазин VRTP</a></noindex></td></tr>
+<!--<tr class="row4"><td><a href='http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&amp;act=searchlib'>Поиск в библиотеке</a></td></tr>//-->
+</tbody></table></div>
+<div class="tableborder"><table width="100%" border="0" cellspacing="1" cellpadding="2">
+<tbody><tr><td class="maintitle"><img src="./best_practice_files/nav_m.gif" border="0">&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories">РАЗДЕЛЫ</a></td></tr>
+<tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=2116">Правила форума</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=2811">временный раздел</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=2486">Реклама на ВРТП</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=5">Статьи</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=4">Радиодетали</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=3">Измерительная техника</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=2">Технологии и материалы</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=1">Спецтехника</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=2390">Микроконтроллеры</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=6">Технологии и связь</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=42">Пиратское радио</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=188">Начинающим.</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=95">Софт</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=1531">Охрана, ОПС, СКУД</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=206">Разное</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=584">Самооборона</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=1869">Медицинская техника</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=1434">Ключевые слова</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=1304">ООО "Крокс"</a></td></tr><tr class="row4"><td>&nbsp; <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&cat=2806">Источники питания</a></td></tr>
+</tbody></table></div>
+
+<div class="tableborder"><table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tbody><tr><td class="pformstrip"><img src="./best_practice_files/book_sm.gif" border="0">&nbsp;<b>Новые книги</b></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7405">Офисный шпионаж</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7404">Как построить трансивер</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7403">Active SMD components marking codes databook 2012</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7402">Секретные инструкции ЦРУ и КГБ по сбору фактов, конспирации и дезинформации</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7401">Транзисторы в SMD-исполнении. Том 2. Nec, Panasonic, Sanyo, Toshiba.</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7400">Радиоаматор 1 2013</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=5513">Основы любительской радиосвязи.</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7397">Разработка устройств на микроконтроллерах AVR (2013)</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7398">Радиомир №12 2012</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=lib&CODE=article&article=7396">Собираем систему IP видеонаблюдения (2012) DVDRip</a></td></tr>
+
+</tbody></table></div>
+<div class="tableborder"><table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tbody><tr><td class="pformstrip"><img src="./best_practice_files/book_sm.gif" border="0">&nbsp;<b>Обновления</b></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=3576">Радиостетоскоп.</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=3574">Бюджетный сканер на 40-890 Мгц</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=3573">Эмулятор 5-TONE звука моторолы для р/станций</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=3533">Антенна GP на 433 МГц</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=2117">„Правила форума“</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=2804">Многофункциональный частотомер до 4ГГц из доступных деталей</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=3572">Радиомикрофон «Простачок» 4хх и 8хх.</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=2476">"Малыш-FM2" чуть подросший "Малыш-FM"</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=3571">Практическая реализация детектора гамма радиации на фотодиоде</a></td></tr>
+<tr class="row4"><td><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=categories&CODE=article&article=3422">Дозиметр MyGeiger</a></td></tr>
+
+</tbody></table></div>
+<div class="tableborder"><table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tbody><tr><td class="pformstrip"><img src="./best_practice_files/stats_sm.gif" border="0">&nbsp;<b>Статистика</b></td></tr>
+<tr class="row4"><td>Зарегистрированных: <b>67082</b></td></tr>
+<tr class="row4"><td>Последним зарегистрирован: <b><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=113309">valerex</a></b></td></tr>
+<tr class="row4"><td>Рекорд посещаемости: <b>928</b></td></tr>
+<tr class="row4"><td>Групп пользователей: <b>4</b></td></tr>
+<tr><td class="pformstrip"><img src="./best_practice_files/group1.gif" border="0">&nbsp;<b>Группы:</b></td></tr>
+<tr class="row4"><td> [<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Members&filter=4"><span style="color:blue">Admin</span></a>] [<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Members&filter=3">Cоучастник</a>] [<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Members&filter=8"><span style="color:red">Автор</span></a>] [<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Members&filter=9">Модератор</a>] </td></tr>
+</tbody></table></div>
+<div class="tableborder"><table width="100%" border="0" cellspacing="1" cellpadding="4">
+<tbody><tr><td class="pformstrip"><img src="./best_practice_files/group.gif" border="0">&nbsp;<b>Сейчас на сайте</b></td></tr>
+<tr class="row4"><td><img src="./best_practice_files/ur-all.gif" border="0">&nbsp;Всего: <b>270</b></td></tr>
+<tr class="row4"><td><img src="./best_practice_files/ur-guest.gif" border="0">&nbsp;Гостей: <b>231</b></td></tr>
+<tr class="row4"><td><img src="./best_practice_files/ur-anony.gif" border="0">&nbsp;Анонимных: <b>2</b></td></tr>
+<tr class="row4"><td><img src="./best_practice_files/ur-member.gif" border="0">&nbsp;Пользователей: <b>37</b></td></tr>
+<tr class="row4"><td><img src="./best_practice_files/ur-registered.gif" border="0">&nbsp;Зарегистрированные:<br><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=113294">UA6WSH</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=53240">mihanik</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=75372">redko</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=7632"><span style="color:red">slmvv</span></a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=76920">semen7m</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=113039">mazaysky</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=19588">bjlizvor</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=92964">Atmel2005</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=67520">колоб</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=110412">etb</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=113307">skywriter91</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=1751"><span style="color:red">blaze</span></a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=46222">LegoGo</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=58318">vis.vladas</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=89553">Diadka</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=90889">VZH_79</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=99518">romanetz</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=94352">garik345</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=113308">nikolo05</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=75197">anhleng</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=69708">srg320</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=78989">пуля</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=18181">beehive</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=112431">Oberon64</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=99459">@Kostyan@</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=75706">Luter</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=97102">Luch9</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=109298">sl-621</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=45393">platan</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=27360"><span style="color:red">Eddy71</span></a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=93040">konst577</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=60553">hsl</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=110480">letosh</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=112871">Asenov</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=38145">samid</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=79017">SerjNSK</a>  
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=2936">girchkrol</a>  
+ </td></tr>
+</tbody></table></div>
+<div align="center">
+<br><br><noindex><a href="http://vrtp.ru/index.php?act=ST&f=71&t=20702"><img src="./best_practice_files/smf_metr.jpg" border="0"><br>частотомер 0-2600 МГц <br>1600руб</a></noindex><br><br><h5>3G/4G антенны от <a href="http://kroks.ru/shop/4g-lte-antenna/">производителя</a> для всех мобильных операторов.</h5><br><br><h5>Разработка антенн для передачи данных GSM, WiFi(2.4- 5,8), 3G, 4G- <a href="http://kroks.ru/">компания Крокс</a>.</h5><br><br><h5>Спутниковые ресиверы, <a href="http://www.agsat.com.ua/index.php?categoryID=26" target="_blank" title="спутниковые антенны">спутниковые антенны</a>, оборудование для приема спутникового тв </h5><br><br><noindex><a href="http://vrtp.ru/index.php?showtopic=21026"><img src="./best_practice_files/2650_sm.jpg" border="0"><br>АНАЛИЗАТОР СПЕКТРА 3,3ГГц<br>от 65 000 руб.</a></noindex><br><br><noindex><a href="http://vrtp.ru/index.php?act=ST&f=71&t=20702"><img src="./best_practice_files/349.jpg" border="0"><br>РАСПРОДАЖА ОСТАТКОВ<br>
+отправка по России</a></noindex><br><br><a href="http://vrtp.ru/test/index.html">тест поиска</a>
+<br><br><noindex><a href="http://vrtp.ru/index.php?act=ST&f=71&t=20702"><img src="./best_practice_files/reklbox.jpg" border="0"><br>Не знаешь где хранить SMD?<br>Победи беспорядок! <br>1500-1700руб</a></noindex><br><br><noindex><a href="http://vrtp.ru/index.php?act=ST&f=71&t=20702"><img src="./best_practice_files/fr.jpg" border="0"><br>стеклотекстолит для ПП - недорого, реактивы для травления</a></noindex><a href="http://vrtp.ru/index.php?act=ST&f=71&t=20702"><br><br></a><a href="http://www.velest.ru/"><img src="http://velest.ru/images/banner_100x100_3.gif" title="создание сайтов. IT Велест" border="0"></a><br><br><a href="http://kroks.ru/shop/complete-sets/"><img src="http://vrtp.ru/banner/complect.jpg" title=" 3G, 4G комплекты" border="0" style="display: none !important;"></a></div>
+</td><td>
+    <script language="javascript" type="text/javascript">
+    <!--
+
+    function link_to_post(pid)
+    {
+    	temp = prompt( "Копирование прямой ссылки этой темы, для сохранения ссылки в буфере обмена Вашего компьютера", "http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&amp;showtopic=24571&view=findpost&p=" + pid );
+    	return false;
+    }
+
+    function delete_post(theURL) {
+       if (confirm('Вы действительно хотите удалить это сообщение?')) {
+          window.location.href=theURL;
+       }
+       else {
+          alert ('Не хотите, как хотите :)');
+       }
+    }
+
+    function PopUp(url, name, width,height,center,resize,scroll,posleft,postop) {
+    if (posleft != 0) { x = posleft }
+    if (postop  != 0) { y = postop  }
+
+    if (!scroll) { scroll = 1 }
+    if (!resize) { resize = 1 }
+
+    if ((parseInt (navigator.appVersion) >= 4 ) && (center)) {
+      X = (screen.width  - width ) / 2;
+      Y = (screen.height - height) / 2;
+    }
+    if (scroll != 0) { scroll = 1 }
+
+    var Win = window.open( url, name, 'width='+width+',height='+height+',top='+Y+',left='+X+',resizable='+resize+',scrollbars='+scroll+',location=no,directories=no,status=no,menubar=no,toolbar=no');
+	}
+
+	function ShowHide(id1, id2) {
+	  if (id1 != '') expMenu(id1);
+	  if (id2 != '') expMenu(id2);
+	}
+
+	function expMenu(id) {
+	  var itm = null;
+	  if (document.getElementById) {
+		itm = document.getElementById(id);
+	  } else if (document.all){
+		itm = document.all[id];
+	  } else if (document.layers){
+		itm = document.layers[id];
+	  }
+
+	  if (!itm) {
+	   // do nothing
+	  }
+	  else if (itm.style) {
+		if (itm.style.display == "none") { itm.style.display = ""; }
+		else { itm.style.display = "none"; }
+	  }
+	  else { itm.visibility = "show"; }
+	}
+    //-->
+    </script>
+
+<a name="top"></a>
+
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr>
+ <td align="left" width="20%" nowrap="nowrap"><a title="Переход на страницу..." href="javascript:multi_page_jump('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showtopic=24571',40,30);">Страницы:</a> (2)&nbsp;<b>[1]</b>&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showtopic=24571&st=30">2</a>&nbsp;&nbsp;( <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ST&f=105&t=24571&view=getnewpost">Перейти к первому непрочитанному сообщению</a> )</td>
+ <td align="right" width="80%"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=02&f=105&t=24571"><b>Ответить</b></a> <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=00&f=105" title="Создание новой темы"><b>Новая тема</b></a> <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=10&f=105"><b>Новый опрос</b></a></td>
+</tr>
+</tbody></table>
+<br>
+<div class="tableborder">
+    <div class="maintitle"><img src="./best_practice_files/nav_m.gif" border="0" alt="&gt;" width="8" height="8">&nbsp;<b>Семисегментный индикатор на 74hc595</b></div>
+	<!--{IBF.POLL}-->
+	<div align="right" class="postlinksbar">
+	  <strong><!--{IBF.START_NEW_POLL}--><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Track&f=105&t=24571">Подписка на тему</a> |
+	  <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Forward&f=105&t=24571">Сообщить другу</a> |
+	  <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Print&client=printer&f=105&t=24571">Версия для печати</a></strong>
+	</div>
+
+	<!--Begin Msg Number 575575-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry575575"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(575575); return false;" style="text-decoration:underline"># 575575</a> &nbsp;</b> Jul 14 2014, 11:48 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=575575"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 575575 -->
+        <div class="postcolor"> Здравствуйте.<br>Есть 4-символьный 7-сегментный индикатор, сдвиговый регистр 74hc595 и atmega16. Все работает, выводится любое 4-значное число.<br>Т.к. вычислительные мощности МК будут использованы не только для динамической индикации, то ее хочу посадить на таймер. Через определенные промежутки времени в прерывании будет браться глобальная переменная и выводиться на экран.<br>Вот код, который у меня получился:<br><br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>#define F_CPU 8000000UL<br>#include &lt;avr/io.h&gt;<br>#include &lt;avr/interrupt.h&gt;<br>#include &lt;util/delay.h&gt;<br><br>char dig[] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000010, 0b11111000, 0b10000000, 0b10010000, 0b01111111};<br>char razr[] = {0b11111110, 0b11111101, 0b11111011, 0b11110111};<br>unsigned char display[2];<br>unsigned int a=0, i;<br>unsigned char dig1, dig2, dig3, dig4;<br><br><br>void write_display(unsigned char *data) <br>{<br>	unsigned char mask,i;<br>	<br>	for(i = 0; i &lt; 2; i++)<br>	{<br> &nbsp;mask = 0x80;<br> &nbsp;<br> &nbsp;for(char k = 0; k &lt; 8; k++)<br> &nbsp;{<br> &nbsp;	// сравниваем каждый бит с единицей<br> &nbsp;	if(data[i] &amp; mask)<br> &nbsp;	{<br> &nbsp; &nbsp;PORTD &amp;=~(1 &lt;&lt; PD5); // DATA 1<br> &nbsp; &nbsp;PORTD |= (1 &lt;&lt; PD6); // CLK 1<br> &nbsp; &nbsp;PORTD &amp;= ~(1 &lt;&lt; PD6); // CLK 0<br> &nbsp;	}<br> &nbsp;	else<br> &nbsp;	{<br> &nbsp; &nbsp;PORTD |=(1 &lt;&lt; PD5); // DATA 0<br> &nbsp; &nbsp;PORTD |= (1 &lt;&lt; PD6); // CLK 1<br> &nbsp; &nbsp;PORTD &amp;= ~(1 &lt;&lt; PD6); // CLK 0<br> &nbsp;	}<br> &nbsp;	mask = mask &gt;&gt; 1; // сдвигаем биты<br> &nbsp;}<br>	}<br>	// защелкиваем регистр<br>	PORTD |= (1 &lt;&lt; PD4);<br>	PORTD &amp;= ~(1 &lt;&lt; PD4);<br>}<br><br><br>ISR (TIMER1_COMPA_vect)<br>{<br> &nbsp;dig1=dig[a % 10000 / 1000];<br> &nbsp;dig2=dig[a % 1000 / 100];<br> &nbsp;dig3=dig[a % 100 / 10];<br> &nbsp;dig4=dig[a % 10];<br> &nbsp;display[0] = &nbsp;razr[3];<br> &nbsp;display[1] = &nbsp;dig4;<br> &nbsp;write_display(display);<br> &nbsp;display[0] = &nbsp;razr[2];<br> &nbsp;display[1] = &nbsp;dig3;<br> &nbsp;write_display(display);<br> &nbsp;display[0] = &nbsp;razr[1];<br> &nbsp;display[1] = &nbsp;dig2;<br> &nbsp;write_display(display);<br><br> &nbsp;display[0] = &nbsp;razr[0]; &nbsp; &nbsp;// в крайний левый символ<br> &nbsp;display[1] = &nbsp;dig1; &nbsp; &nbsp; &nbsp; &nbsp;// выводится цифра<br> &nbsp;write_display(display); &nbsp;// и посылается на 74hc595<br>}<br><br>int main(void)<br>{<br>	DDRD = 0xFF;<br>	PORTD = 0x00;<br><br>	TCCR1A = 0x00;<br>	TCCR1B = (1&lt;&lt;WGM12) | (1&lt;&lt;CS11) &nbsp;| (1&lt;&lt;CS10);<br>	TCNT1H = 0;<br>	TCNT1L = 0;<br>	OCR1AH = 15625;<br>	OCR1AL = 15625;<br>	TIMSK = (1&lt;&lt;OCIE1A);<br>	<br>	sei();<br>	<br>	while(1)<br>	{<br> &nbsp;a++;<br> &nbsp;_delay_ms(1000);<br>	}<br>}<!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Но есть проблема — крайняя цифра горит намного ярче остальных, а остальные светят очень и очень тускло. Что я не так делаю? Если OCR1AH и OCR1AL ставлю в 0, то все символы горят ярко, как и нужно, то таймер в этом случае работает бесконечно (МК зависает).  <br>Спасибо.<br><br><img src="./best_practice_files/w8TGK0fsRyE.jpg" border="0" alt="image"> <br><br><span class="edit">Это сообщение отредактировал <b>molotoff</b> - Jul 14 2014, 11:49 PM</span> </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 575593-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry575593"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=70096">vladlen</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(575593); return false;" style="text-decoration:underline"># 575593</a> &nbsp;</b> Jul 15 2014, 01:48 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=575593"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/splash-outline-hi.png" border="0" width="64" height="61" alt=""><br><br>
+        Соучастник<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 864<br>
+        Пользователь №: 70096<br>
+        Регистрация: 31-August 10<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 575593 -->
+        <div class="postcolor"> рискну предположить.<br>видимо, косяк в этом <br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1-->ISR (TIMER1_COMPA_vect)<br>{<br> dig1=dig[a % 10000 / 1000];<br> dig2=dig[a % 1000 / 100];<br> dig3=dig[a % 100 / 10];<br> dig4=dig[a % 10];<br> display[0] = &nbsp;razr[3];<br> display[1] = &nbsp;dig4;<br> write_display(display);<br> display[0] = &nbsp;razr[2];<br> display[1] = &nbsp;dig3;<br> write_display(display);<br> display[0] = &nbsp;razr[1];<br> display[1] = &nbsp;dig2;<br> write_display(display);<br><br> display[0] = &nbsp;razr[0]; &nbsp; &nbsp;// в крайний левый символ<br> display[1] = &nbsp;dig1; &nbsp; &nbsp; &nbsp; &nbsp;// выводится цифра<br> write_display(display); &nbsp;// и посылается на 74hc595<br>}<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>вывод всех символов за крайне малый промежуток времени и ждем следующего прерывания.<br>т.к. старший разряд(крайне левый razr0) выводится последним, то для него время горения равно времени между прерываниями. <br>для остальных разрядов это время между выполнением <br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>// защелкиваем регистр<br>PORTD |= (1 &lt;&lt; PD4);<br>PORTD &amp;= ~(1 &lt;&lt; PD4);<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2-->  <br>и получается, что старший разряд горит например 0.05с, а все остальные по 0.0002с и визуально получаем такую разницу в яркости.<br><br><br>и еще кусок упростить хотябы<br><br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--> &nbsp;<br>if(data[i] &amp; mask)PORTD &amp;=~(1 &lt;&lt; PD5); // &nbsp;выставили данные<br>elsePORTD |=(1 &lt;&lt; PD5); // &nbsp;<br><br>PORTD |= (1 &lt;&lt; PD6); // &nbsp;щелкнули CLK<br>PORTD &amp;= ~(1 &lt;&lt; PD6); // &nbsp;<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--> <br><br><span class="edit">Это сообщение отредактировал <b>vladlen</b> - Jul 15 2014, 01:52 AM</span> </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=70096"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 575601-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry575601"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(575601); return false;" style="text-decoration:underline"># 575601</a> &nbsp;</b> Jul 15 2014, 05:03 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=575601"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 575601 -->
+        <div class="postcolor"> Всё неправильно. Причём полностью.<br>Во первых - пересадить обязательно 74hc595 на аппаратный SPI и выставить максимальную скорость CLK/2.<br>Во вторых. Кто учил Вас использовать деление в прерывании??? На каждый цикл деления тратится как минимум 200 тактов. А там около 7 таких циклов... Плюс передача через тормозной не оптимизированный программный SPI.<br><br>В общем долго объяснять все нюансы.<br><br>Вот <a href="http://vrtp.ru/index.php?showtopic=20647&view=findpost&p=430250" target="_blank">здесь</a> ищите правильную динамическую индикацию от меня. Код конечно староват, но для Вас пойдёт. Только замените вывод в порт на вывод в регистр аппаратного SPI. А общие провода от индикатора лучше подключить прямо к МК, использовать для этого ещё один регистр бессмысленно.<br><br>И таймер используйте нулевой, остальные заводить под простейшую индикацию просто глупо, лучше их пустить на подсчёт времени (в качестве системного таймера) или на генерацию ШИМ.<br><br>Надеюсь поняли как надо правильно делать? В прерывании только вывод на экран! Никаких раскладываний переменной на цифры, этим должна заниматься основная программа, в прерывании просто берём уже подготовленные данные и выдаём в порт. Максимум что можно сделать это преобразовать данные в формат для индикатора по таблице декодирования. Но и это можно сделать в основной программе, и получится массив из 4 байт, которые останется циклично выводить на индикатор и циклично дергать общими выводами в прерывании. Кода в прерывании на 4-6 строчек, выполняется ну максимум за 20 тактов, работает быстро, яркость свечения не падает, так как переключение с одной на другую цифру происходит почти мгновенно.<br><br><span style="color:red">Переместил в чуть правильный раздел.</span> <br><br><span class="edit">Это сообщение отредактировал <b>vitalik_b</b> - Jul 15 2014, 05:25 AM</span> </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 575629-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry575629"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(575629); return false;" style="text-decoration:underline"># 575629</a> &nbsp;</b> Jul 15 2014, 11:52 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=575629"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 575629 -->
+        <div class="postcolor"><!--QuoteBegin-vitalik_b+Jul 15 2014, 05:03 AM--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>QUOTE</b> (vitalik_b @ Jul 15 2014, 05:03 AM)</td></tr><tr><td id="QUOTE"><!--QuoteEBegin--> Надеюсь поняли как надо правильно делать? <!--QuoteEnd--> </td></tr></tbody></table><div class="postcolor"> <!--QuoteEEnd--><br> Да, понял. Спасибо большое!  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 575867-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry575867"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(575867); return false;" style="text-decoration:underline"># 575867</a> &nbsp;</b> Jul 17 2014, 02:02 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=575867"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 575867 -->
+        <div class="postcolor"> Скажите, пожалуйста, возможно ли сделать так, чтобы этот код выполнялся постоянно?<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1-->void spi_transaction( unsigned char b )<br>{<br>	SPI_PORT &amp;= ~(1 &lt;&lt; SPI_SS ); &nbsp; &nbsp; &nbsp; &nbsp;//сбрасываем SS в 0<br>	SPDR = b; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //передаваемые данные<br>	while( !( SPSR &amp; ( 1 &lt;&lt; SPIF ) ) ); //ждем окончания передачи<br>	SPI_PORT |= ( 1 &lt;&lt; SPI_SS ); &nbsp; &nbsp; &nbsp; &nbsp;//выставляем SS в 1<br>}<br><br>char N=0;<br><br>ISR (TIMER0_COMP_vect)<br>{<br>	if(N==0) { PORTD|=(1&lt;&lt;4); _delay_ms(5); spi_transaction(dig1); PORTD&amp;=~(1&lt;&lt;4); }<br>	if(N==1) { PORTD|=(1&lt;&lt;5); _delay_ms(5); spi_transaction(dig2); PORTD&amp;=~(1&lt;&lt;5); }<br>	if(N==2) { PORTD|=(1&lt;&lt;6); _delay_ms(5); spi_transaction(dig3); PORTD&amp;=~(1&lt;&lt;6); }<br>	if(N==3) { PORTD|=(1&lt;&lt;7); _delay_ms(5); spi_transaction(dig4); PORTD&amp;=~(1&lt;&lt;7); }<br>	N+=1;<br>	if(N==4)N=0;	<br>}<!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br>А то, получается, в этом случае я не смогу ШИМ запустить, он будет перебиваться этим постоянным прерыванием, а если сработает какое-нибудь другое прерывание, то на какое-то время погаснет индикатор.<br>Сделать хочу еще ШИМ для шагового двигателя и при вращении его цифровое табло должно светиться. Но, подозреваю, что ШИМ и динамическая индикация выполняющиеся в одно время — действие несовместимое (<br>И возможно ли в самом таймере сделать правильную задержку? Без задержки диоды не успевают загореться.<br>Спасибо.  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 575904-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry575904"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(575904); return false;" style="text-decoration:underline"># 575904</a> &nbsp;</b> Jul 17 2014, 01:16 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=575904"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 575904 -->
+        <div class="postcolor"> При такой задержке оно и понятно что это прерывание забьет все остальные. Я же говорил, никаких задержек в прерывании!<br><br>Я так понял никто мой код и не смотрел даже...<br><br>Что это за включили-передали-выключили? Сегмент должен гореть пока не придёт следующее прерывание!<br><br>При входе в прерывание сначала тушим всё общие выводы сегментов:<br><br>Вот так например:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>PORTD &amp;= ~((1&lt;&lt;4)|(1&lt;&lt;5)|(1&lt;&lt;6)|(1&lt;&lt;7)); // Не знаю, правильно ли, но вот так &amp;=~0b11110000 будет работать точно.<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Потом передаём данные на индикатор:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>SPDR = dig[i]; // Привязываем к счётчику i, смысла использовать IF для этого нет!<br>while( !( SPSR &amp; ( 1 &lt;&lt; SPIF ) ) );<br>SPI_PORT &amp;= ~(1 &lt;&lt; SPI_SS ); // Дергаем строб 74hc595<br>SPI_PORT |= ( 1 &lt;&lt; SPI_SS );<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Данные переданы, теперь можно зажечь соответствующий сегмент:<br>Вот так например:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>PORTD |= (1&lt;&lt;i+4); //Привязываем к счётчику i, незачем ему простаивать, +4 это прибавка, чтобы значении 0 счётчика получить число 4, то есть это равносильно (1&lt;&lt;4), при значении счётчика 1 равносильно (1&lt;&lt;5) и т.д.<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br> <br>Икрементируем счётчик:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>i++;<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Затем проверим счётчик на пределы, если что, сбросим его:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>if(i &gt; 3) i = 0; <br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Всё!<br><br>P.S. Незабываем, что dig[] это массив, поэтому надо его объявить unsigned char dig[4];<br>В основной программе туда данные можно теперь складывать при помощи цикла, а не по одному, как было раньше с отдельными переменными. <br><br><span class="edit">Это сообщение отредактировал <b>vitalik_b</b> - Jul 17 2014, 01:29 PM</span> </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576075-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576075"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576075); return false;" style="text-decoration:underline"># 576075</a> &nbsp;</b> Jul 17 2014, 10:36 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576075"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576075 -->
+        <div class="postcolor"> <!--QuoteBegin-vitalik_b+Jul 17 2014, 01:16 PM--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>QUOTE</b> (vitalik_b @ Jul 17 2014, 01:16 PM)</td></tr><tr><td id="QUOTE"><!--QuoteEBegin-->Что это за включили-передали-выключили? Сегмент должен гореть пока не придёт следующее прерывание!<br><!--QuoteEnd--></td></tr></tbody></table><div class="postcolor"><!--QuoteEEnd--><br>Не сегмент, а сегменты. на 4 символа индикатора идет всего 8 контактов и по 1 общему контакту на символ. Когда придет следующее прерывание, этот символ отключится и включится следующий со следующей цифрой. Если делать это очень быстро, чтобы не было мерцания, тогда будет прерывание занимать всю программу.<br>В общем, как я понимаю, что чтобы сделать <u>автономную динамическую индикацию</u>, нужно прикручивать еще МК, например attiny13.  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576104-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576104"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576104); return false;" style="text-decoration:underline"># 576104</a> &nbsp;</b> Jul 17 2014, 11:13 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576104"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576104 -->
+        <div class="postcolor"> Вы включаете одну цифру, ждёте 5 миллисекунд, передаете на неё данные, выключаете и она остается отключенной пока не придёт следующее прерывание...<br><br>Это не то чтобы глупо, это просто ужас.<br><br>Я выложил полностью рабочий алгоритм, даже уже откомпилировал чтобы попробовать - всё работает, но видимо никто даже не смотрел на него.<br><br>Какая автономная индикация? Моя функция выполняется очень быстро, максимум 20 тактов (где то до 20-40 микросекунд времени), при тактовой 4 МГц и частоте прерывания примерно 200 Гц (это ~ 4 мс времени) загрузка процессора менее 1%!<br><br>P.S. И как с такими познаниями можно вообще писать программы...<br>  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576112-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576112"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576112); return false;" style="text-decoration:underline"># 576112</a> &nbsp;</b> Jul 17 2014, 11:24 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576112"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576112 -->
+        <div class="postcolor"> Чтобы научиться писать программы, их надо писать.  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576119-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576119"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576119); return false;" style="text-decoration:underline"># 576119</a> &nbsp;</b> Jul 17 2014, 11:42 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576119"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576119 -->
+        <div class="postcolor"> Вот, так какая же цель Вашей программы? Что она должна делать? Хотя бы схему подключения индикатора, иначе не сильно то и понятно что именно надо.  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576123-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576123"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576123); return false;" style="text-decoration:underline"># 576123</a> &nbsp;</b> Jul 17 2014, 11:48 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576123"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576123 -->
+        <div class="postcolor"><!--QuoteBegin-vitalik_b+Jul 17 2014, 11:42 PM--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>QUOTE</b> (vitalik_b @ Jul 17 2014, 11:42 PM)</td></tr><tr><td id="QUOTE"><!--QuoteEBegin--> Вот, так какая же цель Вашей программы? Что она должна делать? Хотя бы схему подключения индикатора, иначе не сильно то и понятно что именно надо. <!--QuoteEnd--> </td></tr></tbody></table><div class="postcolor"> <!--QuoteEEnd--><br> 1. Есть переменная с определенным значением (0-9999). Индикатор должен постоянно показывать значение этой переменной.<br>2. Есть шаговый двигатель, который крутится 5 сек вправо и возвращается 5 сек влево. Соответственно, на драйвер нужно подавать импульсы (ШИМ). По возвращению на исходную точку переменная декрементируется.<br>3. Цикл повторяется. Goto 1.  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576126-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576126"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576126); return false;" style="text-decoration:underline"># 576126</a> &nbsp;</b> Jul 17 2014, 11:53 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576126"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576126 -->
+        <div class="postcolor"> P.S. В то время, как подаются импульсы на шаговый двигатель, индикация должна работать.<br>Если все вычисления должны выполняться в теле программы, тогда мне не очень понятно, как будет происходить одновременно динамическая индикация и формирование ШИМ сигнала.  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576128-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576128"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576128); return false;" style="text-decoration:underline"># 576128</a> &nbsp;</b> Jul 17 2014, 11:57 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576128"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576128 -->
+        <div class="postcolor"> Вторым таймером и прерыванием от него будет ШИМ генерироватся.  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576132-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576132"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576132); return false;" style="text-decoration:underline"># 576132</a> &nbsp;</b> Jul 18 2014, 12:03 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576132"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576132 -->
+        <div class="postcolor"> Крутится шаговый двигатель. Ждем срабатывание концевика. Сработал. Крутим в обратную сторону, сработал второй концевик, остановились. Это все будет происходить в цикле. Получается, динамическую индикацию я должен навтыкать во все циклы?   </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576137-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576137"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576137); return false;" style="text-decoration:underline"># 576137</a> &nbsp;</b> Jul 18 2014, 12:22 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576137"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576137 -->
+        <div class="postcolor"> Почему во все циклы? Сам модуль динамической индикации работает независимо от основной программы. А то что будет мизерный джиттер от второго прерывания ШИМ таймера это не страшно, если грамотно сделать то заметно не будет.<br><br>А переменная индикации какие данные хранит, и где будет использоваться? <br><br><span class="edit">Это сообщение отредактировал <b>vitalik_b</b> - Jul 18 2014, 12:23 AM</span> </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576478-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576478"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=38679">urry</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576478); return false;" style="text-decoration:underline"># 576478</a> &nbsp;</b> Jul 20 2014, 11:01 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576478"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-38679.jpg" border="0" width="64" height="61" alt=""><br><br>
+        Соучастник<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 1115<br>
+        Пользователь №: 38679<br>
+        Регистрация: 2-November 08<br>
+   		Место жительства: Винница <br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576478 -->
+        <div class="postcolor"> я так вообще ни хрена не понял.<br>зачем периодически плевать инфу в защелки, если менять ее нужно только тогда, когда старое и новое значение (то, что уже светится и то, что нужно вывести) не совпадают ? Зачем эти телодвижения с таймером ?<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1-->Соответственно, на драйвер нужно подавать импульсы (ШИМ).<!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br>Мне это не понять.<br>Для драйвера необходимы 2 сигнала - направление движения и импульс - шаг - количество шагов нужно считать, какой шим ???<br>Хотите, чтобы вам помогли - весь проект в студию и дизайн в протеусе.<br>  </div>
+        <br><br>--------------------<br>
+<div class="signature">Знание умножает скорбь и размер исходника...</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=38679"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=38679"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576511-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576511"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576511); return false;" style="text-decoration:underline"># 576511</a> &nbsp;</b> Jul 20 2014, 03:31 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576511"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576511 -->
+        <div class="postcolor"> Так индикация то по любому динамическая будет, так что таймер всё таки нужен.<br><br><br>Я вот тоже не представляю как он будет управлять шаговым движком при помощи ШИМ-а? Ни количества шагов, сначала 5 секунд крутим, потом уже крутим до срабатывания концевика... Так же не понял что должен выводить тот индикатор.  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576606-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576606"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576606); return false;" style="text-decoration:underline"># 576606</a> &nbsp;</b> Jul 21 2014, 12:23 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576606"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576606 -->
+        <div class="postcolor"> <!--QuoteBegin-vitalik_b+Jul 20 2014, 03:31 PM--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>QUOTE</b> (vitalik_b @ Jul 20 2014, 03:31 PM)</td></tr><tr><td id="QUOTE"><!--QuoteEBegin-->Так индикация то по любому динамическая будет, так что таймер всё таки нужен.<br><br><br>Я вот тоже не представляю как он будет управлять шаговым движком при помощи ШИМ-а? Ни количества шагов, сначала 5 секунд крутим, потом уже крутим до срабатывания концевика... Так же не понял что должен выводить тот индикатор.<!--QuoteEnd--></td></tr></tbody></table><div class="postcolor"><!--QuoteEEnd--><br>Не шим, а простые импульсы, извиняюсь.<br><br>Код импульсов для ШВП:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1-->ISR(TIMER1_COMPA_vect)<br>{<br>	TCNT1=0;<br> &nbsp; if (PINB &amp; (1&lt;&lt;PINB1))<br> &nbsp;PORTB&amp;=~(1&lt;&lt;PB1);<br> &nbsp; else <br> &nbsp;PORTB|=(1&lt;&lt;PB1);<br>}<!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Код динамической индикации:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1-->ISR (TIMER0_OVF_vect)<br>{<br>	PORTD &amp;= ~((1&lt;&lt;4)|(1&lt;&lt;5)|(1&lt;&lt;6)|(1&lt;&lt;7));<br>	PORTD |= (1&lt;&lt;(i+4)); <br>	spi_transaction(num[i]);<br>	i++;<br>	if (i&gt;3) i=0;<br>}<!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Эта индикация сбивает импульсы, они неравномерные и шаговый движок немножко тарахтит, как трактор, т.к. во время импульсов включается вышенаписанное прерывание.<br><br><br><br>  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576610-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576610"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576610); return false;" style="text-decoration:underline"># 576610</a> &nbsp;</b> Jul 21 2014, 01:07 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576610"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576610 -->
+        <div class="postcolor"> Можно и не вручную импульсы генерировать, а настроить таймер на режим с переменной частотой (не помню как он там называется).<br><br>Частота прерывания наверно большая, раз лишние пару десятков микросекунд мешают, какая частота прерывания обоих таймеров?<br><br>SPI настроили на x2 скорость?<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>SPSR &nbsp;= (1&lt;&lt;SPI2X);<br>SPCR &nbsp;= (1&lt;&lt;SPE)|(1&lt;&lt;MSTR);<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br><br>P.S. Это всё ТЗ? Просто индикация циклов и вращение движка туда сюда в зависимости от состояние переключателей? Пожалуйста, напишите наконец то полное ТЗ, ну невозможно что то представлять, не зная полного ТЗ. <br><br><span class="edit">Это сообщение отредактировал <b>vitalik_b</b> - Jul 21 2014, 01:11 AM</span> </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576611-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576611"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576611); return false;" style="text-decoration:underline"># 576611</a> &nbsp;</b> Jul 21 2014, 01:09 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576611"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576611 -->
+        <div class="postcolor"> Увеличением частоты импульсов на шаговый двигатель и уменьшением частоты индикации (мерцания практически не видно, на грани), эффект "трактора" практически исчез. Но наблюдается иногда глюк: отключается все прерывания, как будто сработал концевик (но он не сработал) и программа продолжает выполняться, перепрыгнув через некоторый кусок кода.   </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576614-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576614"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576614); return false;" style="text-decoration:underline"># 576614</a> &nbsp;</b> Jul 21 2014, 01:17 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576614"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576614 -->
+        <div class="postcolor"> Переключите режим таймера на автономную генерацию импульсов с установкой частоты записью в регистры сравнения OSR. Это CTC режим вроде бы.  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576615-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576615"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576615); return false;" style="text-decoration:underline"># 576615</a> &nbsp;</b> Jul 21 2014, 01:18 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576615"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576615 -->
+        <div class="postcolor"> 1. Есть ШВП с двумя концевиками: начальный и конечный.<br>2. По нажатию кнопки каретка доходит до конечного концевика и возвращается в начало.<br>3. По возвращению в начало из переменной А вычитаем единицу.<br>4. Все время работы индикатор отображает значение переменной.<br><br>Сейчас такая проблема, что когда каретка возвращается в начальную точку, может остановиться в любом месте и МК просто продолжает выполнять программу, как будто бы каретка уже замкнула начальный концевик.   </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576616-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576616"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576616); return false;" style="text-decoration:underline"># 576616</a> &nbsp;</b> Jul 21 2014, 01:20 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576616"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576616 -->
+        <div class="postcolor"> AVRStudio 6 используете?  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576617-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576617"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576617); return false;" style="text-decoration:underline"># 576617</a> &nbsp;</b> Jul 21 2014, 01:26 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576617"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576617 -->
+        <div class="postcolor"><!--QuoteBegin-vitalik_b+Jul 21 2014, 01:20 AM--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>QUOTE</b> (vitalik_b @ Jul 21 2014, 01:20 AM)</td></tr><tr><td id="QUOTE"><!--QuoteEBegin--> AVRStudio 6 используете? <!--QuoteEnd--> </td></tr></tbody></table><div class="postcolor"> <!--QuoteEEnd--><br> 5 версия  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576618-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576618"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576618); return false;" style="text-decoration:underline"># 576618</a> &nbsp;</b> Jul 21 2014, 01:32 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576618"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 576618 -->
+        <div class="postcolor"> А, ну нормально.<br><br>Каков смысл вот этого? <br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br> &nbsp;if (PINB &amp; (1&lt;&lt;PINB1))<br> PORTB&amp;=~(1&lt;&lt;PB1);<br> &nbsp;else<br> PORTB|=(1&lt;&lt;PB1);<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2-->  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 576623-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry576623"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(576623); return false;" style="text-decoration:underline"># 576623</a> &nbsp;</b> Jul 21 2014, 04:39 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=576623"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 576623 -->
+        <div class="postcolor"> Динамическая индикация:<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>#include &lt;avr/io.h&gt;<br>#include &lt;avr/interrupt.h&gt;<br>#include &lt;avr/pgmspace.h&gt;<br>#include &lt;util/delay.h&gt;<br><br>unsigned int in = 0;<br><br>unsigned char i;<br>unsigned char DisplayBuffer[4];<br><br>unsigned int div_table[] PROGMEM = <br>{<br>1000,<br>100,<br>10,<br>1<br>};<br><br>unsigned char dec_table[] PROGMEM =<br>{<br>0b00111111, //'0' &nbsp;#0<br>0b00000110, //'1' &nbsp;#1<br>0b01011011, //'2' &nbsp;#2<br>0b01001111, //'3' &nbsp;#3<br>0b01100110, //'4' &nbsp;#4<br>0b01101101, //'5' &nbsp;#5<br>0b01111101, //'6' &nbsp;#6<br>0b00000111, //'7' &nbsp;#7<br>0b01111111, //'8' &nbsp;#8<br>0b01101111, //'9' &nbsp;#9<br>};<br><br>/*<br>// Общий анод<br>ISR(TIMER0_OVF_vect)<br>{<br>PORTB &amp;= ~((1&lt;&lt;PB0)|(1&lt;&lt;PB1)|(1&lt;&lt;PB2)|(1&lt;&lt;PB3));<br>SPDR = ~DisplayBuffer[i];<br>while(!(SPSR&amp;(1&lt;&lt;SPIF)));<br>PORTB |= &nbsp;(1&lt;&lt;PB4);<br>PORTB &amp;= ~(1&lt;&lt;PB4);<br>PORTB |= &nbsp;(1&lt;&lt;i);<br>i++;<br>if(i&gt;3) i=0;<br>}<br>*/<br><br>// Общий катод<br>ISR(TIMER0_OVF_vect)<br>{<br>PORTB |= &nbsp;(1&lt;&lt;PB0)|(1&lt;&lt;PB1)|(1&lt;&lt;PB2)|(1&lt;&lt;PB3);<br>SPDR = DisplayBuffer[i];<br>while(!(SPSR&amp;(1&lt;&lt;SPIF)));<br>PORTB |= &nbsp;(1&lt;&lt;PB4);<br>PORTB &amp;= ~(1&lt;&lt;PB4);<br>PORTB &amp;= ~(1&lt;&lt;i);<br>i++;<br>if(i&gt;3) i=0;<br>}<br><br>void update(void)<br>{<br>unsigned char counter;<br>unsigned char offset = 0;<br><br>/* Надо подумать как можно запихнуть это в цикл */<br>if(in &gt;= 1000) // default state<br>	{<br>	goto L0; // Да и метки тут нежелательны<br>	}<br><br>if(in &gt;= 100)<br>	{<br>	offset = 1;<br>	DisplayBuffer[0]=0;<br>	goto L0;<br>	}<br>	<br>if(in &gt;= 10)<br>	{<br>	offset = 2;<br>	DisplayBuffer[0]=0;<br>	DisplayBuffer[1]=0;<br>	goto L0;<br>	}<br>	<br>if(in &gt;= 0)<br>	{<br>	offset = 3;<br>	DisplayBuffer[0]=0;<br>	DisplayBuffer[1]=0;<br>	DisplayBuffer[2]=0;<br>	}<br><br>L0:<br>for(counter=offset; counter&lt;4; counter++)<br>	{	<br>	DisplayBuffer[counter]=pgm_read_byte(&amp;dec_table[(in/pgm_read_word(&amp;div_table[counter]))%10]); // Адовая конструкция, не так ли?<br>	}<br><br>}<br><br>int main(void)<br>{<br>DDRB &nbsp;= 0b10111111;<br><br>SPSR &nbsp;= (1&lt;&lt;SPI2X);<br>SPCR &nbsp;= (1&lt;&lt;SPE)|(1&lt;&lt;MSTR);<br><br>TCCR0 = 0b000000011;<br>TIMSK = 0b000000001;<br><br>asm("sei");<br><br>while(1)<br>	{<br>	update();<br>	in++;<br>	_delay_ms(17); // почти 60 кадров<br>	}<br><br>return 0;<br>}<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2-->  <br>
+<br>
+<strong><span class="edit">Присоединённый файл ( Кол-во скачиваний: 81 )</span></strong>
+<br>
+<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Attach&type=post&id=576623" title="Скачать файл" target="_blank"><img src="./best_practice_files/zip.gif" border="0" alt="Присоединённый файл"></a>
+&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Attach&type=post&id=576623" title="Скачать файл" target="_blank">74HC595.zip</a></div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 577373-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry577373"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(577373); return false;" style="text-decoration:underline"># 577373</a> &nbsp;</b> Jul 24 2014, 10:22 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=577373"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 577373 -->
+        <div class="postcolor"> Из-за того, что провода на монтажной плате относительно длинные и их немало, то, возможно, шли какие-то наводки, и МК работал часто некорректно. Немного прибрался, теперь все четко. ) Динамическая индикация немного мешает генерации импульсов для шаговика, но это некритично. Действительно, прерывание может остановить какое-то внешнее электромагнитное или еще какое воздействие, тем более что в программе прерывания не отменял.  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 577379-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry577379"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(577379); return false;" style="text-decoration:underline"># 577379</a> &nbsp;</b> Jul 24 2014, 10:38 PM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=577379"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 577379 -->
+        <div class="postcolor"> Скорее всего у вас RESET микроконтроллера висит в воздухе, вот и ловит помехи. Да и землю с питанием надо правильно развести.<br><br>Индикация не будет мешать, если пересадить генерацию импульсов на аппаратный уровень, то есть таймером в режиме CTC, а в основной программе следить за концевиком, дёргать направление и управлять скоростью/включением движка если это требуется.  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 577391-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry577391"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=80346">molotoff</a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(577391); return false;" style="text-decoration:underline"># 577391</a> &nbsp;</b> Jul 25 2014, 12:26 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=577391"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post2">
+        <span class="postdetails"><img src="./best_practice_files/av-80346.gif" border="0" width="64" height="64" alt=""><br><br>
+        Посетитель<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Cоучастник<br>
+        Сообщений: 152<br>
+        Пользователь №: 80346<br>
+        Регистрация: 4-May 11<br>
+   		<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post2">
+        <!-- THE POST 577391 -->
+        <div class="postcolor"> Правильно ли я делаю таймер для импульсов для шагового?<br><!--c1--></div><table border="0" align="center" width="95%" cellpadding="3" cellspacing="1"><tbody><tr><td><b>CODE</b> </td></tr><tr><td id="CODE"><!--ec1--><br>ISR (TIMER1_COMPA_vect)<br>{<br>	PORTB|=(1&lt;&lt;PB1);<br>}	<br><br>ISR (TIMER1_COMPB_vect)<br>{<br>	PORTB&amp;=~(1&lt;&lt;PB1);<br>}<br><br>TIMSK|= (1 &lt;&lt; OCIE1A) | (1 &lt;&lt; OCIE1B);<br>TCCR1B |= (1 &lt;&lt; WGM12) | (1 &lt;&lt; CS10);<br>OCR1A &nbsp;= 10000;<br>OCR1B &nbsp;= 5000;<br><!--c2--></td></tr></tbody></table><div class="postcolor"><!--ec2--><br><br>Не правильно, потому что не работает ((  </div>
+        
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=80346"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=80346"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a><a href="http://ilyadesign.ru/" target="_blank"><img src="./best_practice_files/p_www.gif" border="0" alt="Users Website"></a><a href="javascript:PopUp('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=ICQ&MID=80346','Pager','450','330','0','1','1','1')"><img src="./best_practice_files/p_icq.gif" border="0" alt="ICQ"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+	<!--Begin Msg Number 577393-->
+    <table width="100%" border="0" cellspacing="1" cellpadding="3">
+    <tbody><tr>
+      <td valign="middle" class="row4" width="1%"><a name="entry577393"></a><span class="normalname"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showuser=35582"><span style="color:red">vitalik_b</span></a></span></td>
+        <td class="row4" valign="top" width="99%">
+
+        <!-- POSTED DATE DIV -->
+
+        <div align="left" class="row4" style="float:left;padding-top:4px;padding-bottom:4px">
+        <span class="postdetails">Сообщение: <b><a title="Показать ссылку этой темы" href="http://vrtp.ru/index.php?showtopic=24571#" onclick="link_to_post(577393); return false;" style="text-decoration:underline"># 577393</a> &nbsp;</b> Jul 25 2014, 01:07 AM</span>
+        </div>
+
+        <!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+
+        <div align="right">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=06&f=105&t=24571&p=577393"><img src="./best_practice_files/p_quote.gif" border="0" alt="Quote Post"></a>
+      </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" class="post1">
+        <span class="postdetails"><img src="./best_practice_files/av-35582.png" border="0" width="64" height="49" alt=""><br><br>
+        Дедушка<br>
+        <img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><img src="./best_practice_files/pip.gif" border="0" alt="*"><br><br>
+        Группа: Автор<br>
+        Сообщений: 5243<br>
+        Пользователь №: 35582<br>
+        Регистрация: 3-August 08<br>
+   		Место жительства: Украина, Харьков<br><br>
+         </span><br>
+        <!--$ author[field_1]-->
+        <img src="./best_practice_files/spacer.gif" alt="" width="160" height="1"><br>
+      </td>
+      <td width="100%" valign="top" class="post1">
+        <!-- THE POST 577393 -->
+        <div class="postcolor"> Нет, таймер сам может дёргать соответствующей ножкой, вручную дёргать нет смысла. Сейчас дам код.  </div>
+        <br><br>--------------------<br>
+<div class="signature">TDA - The Digital Audio<br>Если плоскогубцы выскользнули из рук, то они обязательно упадут именно в то место, где смогут принести наибольшие потери. Закон Мэрфи.</div>
+        <!-- THE POST -->
+      </td>
+    </tr>
+    <tr>
+      <td class="darkrow3" align="left"><b></b></td>
+      <td class="darkrow3" nowrap="nowrap" align="left">
+
+        <!-- PM / EMAIL / WWW / MSGR -->
+
+        <div align="left" class="darkrow3" style="float:left;width:auto">
+        <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Msg&CODE=04&MID=35582"><img src="./best_practice_files/p_pm.gif" border="0" alt="PM"></a><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Mail&CODE=00&MID=35582"><img src="./best_practice_files/p_email.gif" border="0" alt="Email Poster"></a>
+        </div>
+
+        <!-- REPORT / UP -->
+
+        <div align="right">
+         <a href="javascript:scroll(0,0);"><img src="./best_practice_files/p_up.gif" alt="Top" border="0"></a>
+        </div>
+      </td>
+    </tr>
+    </tbody></table>
+    <div class="darkrow1" style="height:5px"><!-- --></div>
+
+      <!--IBF.TOPIC_ACTIVE-->
+      <div class="activeuserstrip" align="center">« <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showtopic=24571&view=old">Предыдущая тема</a> | <strong><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showforum=105">AVR фирмы Atmel.</a></strong> | <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showtopic=24571&view=new">Следующая тема</a> »</div>
+</div>
+
+<br>
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr>
+ <td align="left" width="20%" nowrap="nowrap"><a href="javascript:ShowHide('topic_open','topic_closed')" title="Раскрыть опции темы"><b>Настройки темы</b></a><a title="Переход на страницу..." href="javascript:multi_page_jump('http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showtopic=24571',40,30);">Страницы:</a> (2)&nbsp;<b>[1]</b>&nbsp;<a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&showtopic=24571&st=30">2</a>&nbsp;</td>
+ <td align="right" width="80%"><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=02&f=105&t=24571"><b>Ответить</b></a>	<!-- DEFAULT DIV -->
+	<a href="javascript:ShowHide('qr_open','qr_closed');" title="Открыть окно быстрого ответа" accesskey="f"><b>Шустрый ответ</b></a> <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=00&f=105" title="Создание новой темы"><b>Новая тема</b></a> <a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Post&CODE=10&f=105"><b>Новый опрос</b></a></td>
+</tr>
+</tbody></table>
+
+	<script type="text/javascript">
+	<!--
+	function emo_pop()
+	{
+	  window.open('index.php?act=legends&amp;CODE=emoticons&amp;s=5ff4e3f5790505618cb5c7a481e83c6e','Legends','width=250,height=500,resizable=yes,scrollbars=yes');
+	}
+	//-->
+	</script>
+	<br>
+	<div align="left" id="qr_open" style="display:none;position:relative;">
+	   <form name="REPLIER" action="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&" method="post">
+	   <input type="hidden" name="act" value="Post">
+	   <input type="hidden" name="CODE" value="03">
+	   <input type="hidden" name="f" value="105">
+	   <input type="hidden" name="t" value="24571">
+	   <input type="hidden" name="st" value="">
+	   <input type="hidden" name="enabletrack" value="">
+	   <input type="hidden" name="auth_key" value="309541ad824a11e57e44ae8a744007c3">
+	   <!-- TITLE DIV -->
+	   <div class="tableborder">
+	     <div class="maintitle"><img src="./best_practice_files/nav_m.gif" border="0" alt="&gt;" width="8" height="8">&nbsp;Быстрый ответ</div>
+		 <div class="tablepad" align="center">
+			 <textarea cols="70" rows="8" name="Post" class="textinput" tabindex="1"></textarea>
+			 <br><br>
+			 <a href="javascript:emo_pop();">Показать смайлики в новом окне</a> |
+			 <input type="checkbox" name="enableemo" value="yes" class="checkbox" checked="checked">&nbsp;Включить смайлики |
+			 <input type="checkbox" name="enablesig" value="yes" class="checkbox" checked="checked">&nbsp;Включить подпись
+			 <br><br>
+			 <input type="submit" name="submit" value="Отправить" class="forminput" tabindex="2" accesskey="s">&nbsp;
+			 <input type="submit" name="preview" value="Расширенная форма" class="forminput">
+			 &nbsp;&nbsp; <input type="button" name="qrc" onclick="ShowHide(&#39;qr_open&#39;,&#39;qr_closed&#39;);" value="Скрыть форму" class="forminput">
+		 </div>
+	  </div>
+	   </form>
+	</div>
+<div id="topic_open" style="display:none;z-index:2;">
+    <div class="tableborder">
+	  <div class="maintitle"><img src="./best_practice_files/nav_m.gif" border="0" alt="&gt;" width="8" height="8">&nbsp;<a href="javascript:ShowHide('topic_open','topic_closed')">Скрыть опции темы</a></div>
+	  <div class="tablepad">
+	   <b><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Track&f=105&t=24571">Подписаться на тему</a></b>
+	   <br>
+	   <span class="desc">Уведомление на e-mail об ответах в тему, во время Вашего отсутствия на форуме.</span>
+	   <br><br>
+	   <b><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Track&f=105&type=forum">Подписка на этот форум</a></b>
+	   <br>
+	   <span class="desc">Уведомление на e-mail о новых темах на форуме, во время Вашего отсутствия на форуме.</span>
+	   <br><br>
+	   <b><a href="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=Print&client=choose&f=105&t=24571">Скачать/Распечатать тему</a></b>
+	   <br>
+	   <span class="desc">Скачивание темы в различных форматах или просмотр версии для печати этой темы.</span>
+	 </div>
+   </div>
+</div>
+
+<br>
+
+<div align="right"><form onsubmit="if(document.jumpmenu.f.value == -1){return false;}" action="http://vrtp.ru/index.php?s=5ff4e3f5790505618cb5c7a481e83c6e&act=SF" method="get" name="jumpmenu">
+			             <input type="hidden" name="act" value="SF">
+<input type="hidden" name="s" value="5ff4e3f5790505618cb5c7a481e83c6e">
+			             <select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.jumpmenu.submit() }" class="forminput">
+			             <optgroup label="Перейти на сайт">
+			              <option value="sj_home">Главная страница форума</option>
+			              <option value="sj_search">Поиск</option>
+			              <option value="sj_help">Помощь</option>
+			             </optgroup>
+			             <optgroup label="Переход по форумам"><option value="-1">Новости</option>
+<option value="24">&nbsp;&nbsp;- Новости </option><!--fx:24-->
+<option value="87">&nbsp;&nbsp;- Где купить радиодетали? </option><!--fx:87-->
+<option value="67">&nbsp;&nbsp;- Книга жалоб и предложений. </option><!--fx:67-->
+<option value="70">&nbsp;&nbsp;- Вестник конкурса. </option><!--fx:70-->
+<option value="71">&nbsp;&nbsp;- Купи-продай </option><!--fx:71-->
+<option value="153">&nbsp;&nbsp;- Ярмарка радио-мастеров </option><!--fx:153-->
+<option value="-1">Texнологии</option>
+<option value="44">&nbsp;&nbsp;- Для начинающих. </option><!--fx:44-->
+<option value="25">&nbsp;&nbsp;- Радиомикрофоны, радиомаяки  (+6 подфорумы)</option>
+<option value="94">&nbsp;&nbsp;- Узконаправленные микрофоны </option><!--fx:94-->
+<option value="29">&nbsp;&nbsp;- Глушилки спецтехники и прочего РЭА  (+21 подфорумы)</option>
+<option value="82">&nbsp;&nbsp;- Теория </option><!--fx:82-->
+<option value="46">&nbsp;&nbsp;- Спецприёмники, радиоприемники  (+6 подфорумы)</option>
+<option value="139">&nbsp;&nbsp;- Радиосвязь  (+11 подфорумы)</option>
+<option value="136">&nbsp;&nbsp;- Пиратское радио, пиратское телевидение.  (+14 подфорумы)</option>
+<option value="59">&nbsp;&nbsp;- Разное  (+2 подфорумы)</option>
+<option value="39">&nbsp;&nbsp;- Измерительные приборы.  (+1 подфорумы)</option>
+<option value="27">&nbsp;&nbsp;- Элементы и узлы радиопередатчиков </option><!--fx:27-->
+<option value="51">&nbsp;&nbsp;- "Медвежатник"  (+12 подфорумы)</option>
+<option value="57">&nbsp;&nbsp;- Сотовые телефоны.  (+3 подфорумы)</option>
+<option value="26">&nbsp;&nbsp;- Беспроводные телекамеры </option><!--fx:26-->
+<option value="64">&nbsp;&nbsp;- Микропроцессоры.  (+4 подфорумы)</option>
+<option value="32">&nbsp;&nbsp;- Способы съема информации </option><!--fx:32-->
+<option value="100">&nbsp;&nbsp;- Техника и тактика применения СТС. </option><!--fx:100-->
+<option value="103">&nbsp;&nbsp;- Технология и вспомогательные средства. </option><!--fx:103-->
+<option value="102">&nbsp;&nbsp;- Самооборона </option><!--fx:102-->
+<option value="72">&nbsp;&nbsp;- For English Users </option><!--fx:72-->
+<option value="30">&nbsp;&nbsp;- Радиовредительство </option><!--fx:30-->
+<option value="48">&nbsp;&nbsp;- Phreak (Фрик) </option><!--fx:48-->
+<option value="89">&nbsp;&nbsp;- Хорошо забытое </option><!--fx:89-->
+<option value="156">&nbsp;&nbsp;- Электропитание </option><!--fx:156-->
+<option value="155">&nbsp;&nbsp;- Счетчики </option><!--fx:155-->
+<option value="-1">Охрана, ОПС, СКУД</option>
+<option value="73">&nbsp;&nbsp;- Видеонаблюдение </option><!--fx:73-->
+<option value="74">&nbsp;&nbsp;- Датчики и исполнительные устройства </option><!--fx:74-->
+<option value="75">&nbsp;&nbsp;- Контроль доступа </option><!--fx:75-->
+<option value="-1">Наука, разум, вселенная</option>
+<option value="76">&nbsp;&nbsp;- Около- и научные физические теории </option><!--fx:76-->
+<option value="95">&nbsp;&nbsp;- Медицинская техника и все что с ней связано </option><!--fx:95-->
+<option value="-1">Разное</option>
+<option value="45">&nbsp;&nbsp;- Файловый обменник </option><!--fx:45-->
+<option value="98">&nbsp;&nbsp;- Сделал сам посоветуй другу. </option><!--fx:98-->
+<option value="88">&nbsp;&nbsp;- Помойка </option><!--fx:88-->
+<option value="36">&nbsp;&nbsp;- Флейм </option><!--fx:36-->
+<option value="154">&nbsp;&nbsp;- VIDEO.VRTP.RU </option><!--fx:154-->
+</optgroup>
+</select>&nbsp;<input type="submit" value="ок!" class="forminput"></form></div>
+
+<br> 
+</td></tr></tbody></table>
+<div align="center">
+<br><!--20299650291--><script type="text/javascript">var _acic={dataProvider:100};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www2.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()</script><br><br>&nbsp;<noindex><!-- HotLog -->
+<script type="text/javascript" language="javascript">
+hotlog_js="1.0";
+hotlog_r=""+Math.random()+"&s=137543&im=201&r="+escape(document.referrer)+"&pg="+
+escape(window.location.href);
+document.cookie="hotlog=1; path=/"; hotlog_r+="&c="+(document.cookie?"Y":"N");
+</script>
+<script type="text/javascript" language="javascript1.1">
+hotlog_js="1.1";hotlog_r+="&j="+(navigator.javaEnabled()?"Y":"N")
+</script>
+<script type="text/javascript" language="javascript1.2">
+hotlog_js="1.2";
+hotlog_r+="&wh="+screen.width+'x'+screen.height+"&px="+
+(((navigator.appName.substring(0,3)=="Mic"))?
+screen.colorDepth:screen.pixelDepth)</script>
+<script type="text/javascript" language="javascript1.3">hotlog_js="1.3"</script>
+<script type="text/javascript" language="javascript">hotlog_r+="&js="+hotlog_js;
+document.write("<a href='http://click.hotlog.ru/?137543' target='_top'><img "+
+" src='http://hit6.hotlog.ru/cgi-bin/hotlog/count?"+
+hotlog_r+"&' border=0 width=88 height=100 alt=HotLog></a>")
+</script><a href="http://click.hotlog.ru/?137543" target="_top"><img src="http://hit6.hotlog.ru/cgi-bin/hotlog/count?0.41426754952408373&s=137543&im=201&r=https%3A//www.google.ru/&pg=http%3A//vrtp.ru/index.php%3Fshowtopic%3D24571&c=Y&j=Y&wh=1366x768&px=24&js=1.3&" border="0" width="88" height="100" alt="HotLog"></a>
+<noscript>
+&lt;a href="http://click.hotlog.ru/?137543" target="_top"&gt;&lt;img src="http://hit6.hotlog.ru/cgi-bin/hotlog/count?s=137543&amp;im=201" border=0 
+ width=88 height=100 alt="HotLog"&gt;&lt;/a&gt;
+</noscript>
+<!-- /HotLog --></noindex>&nbsp;<noindex><a href="http://www.radiokot.ru/">
+<img src="./best_practice_files/button.gif" width="88" height="31" border="0" hspace="0" vspace="0" alt="РадиоКОТ - популярно об электронике. Авторские схемы, новые разработки. Обучение по электронике, микроконтроллерам, ПЛИС. Форум">
+</a></noindex>&nbsp;<noindex><a href="http://www.skif.biz/"> <img src="http://www.skif.biz/banner.php" alt="banner" width="468" height="60" border="0" style="display: none !important;"></a></noindex>&nbsp;<noindex><a href="http://g151.ru/" target="_blank" title="Выживание,  книги, фильмы, 
+статьи"><img src="./best_practice_files/g151-silver-88x31.jpg" border="0" width="88" height="31" alt="Выживание, фильмы, скачать "></a></noindex>&nbsp;<noindex><a href="http://www.diptrace.com/rus/" target="_blank" title="DIPTRACE - САМЫЙ ЛУЧШИЙ ТАКСИРОВЩИК ПЕЧАТНЫХ ПЛАТ"><img src="http://vrtp.ru/banner/diptrace.gif" border="0" alt="DIPTRACE - САМЫЙ ЛУЧШИЙ ТАКСИРОВЩИК ПЕЧАТНЫХ ПЛАТ" style="display: none !important;"></a></noindex></div>
+<br clear="all">
+<br>
+<div align="center">[ Script Execution time: 0.2202 ] &nbsp; [ 13 queries used ] &nbsp; [ GZIP выключен ] </div>
+<br>
+<div align="center">Portal-X</div> 
+</div>
+ 
+</body></html>

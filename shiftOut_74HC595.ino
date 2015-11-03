@@ -1,21 +1,21 @@
 /*
 Shift registers at 74HC595
-
-===TODO===
-^^ - inverted pin
-
-ÊŇ--GND registers controls output
-ÊŇ--VCC set all output is LOW (high impedans)
-
-ŘŜŤ--GND  reset 74HC595
-ŘŜŤ--VCC  normal mode
-
+ 
+ ===TODO===
+ ^^ - inverted pin
+ 
+ ÊŇ--GND registers controls output
+ ÊŇ--VCC set all output is LOW (high impedans)
+ 
+ ŘŜŤ--GND  reset 74HC595
+ ŘŜŤ--VCC  normal mode
+ 
  */
 
-int dataPin = 3; //DS of 74HC595
-int latchPin = 4;//ST_CP of 74HC595
-int clockPin = 5; //SH_CP of 74HC595
-
+uint8_t dataPin = 3; //DS of 74HC595
+uint8_t latchPin = 4;//ST_CP of 74HC595
+uint8_t clockPin = 5; //SH_CP of 74HC595
+uint8_t enInvertedPin = 6; //ÊŇ of 74HC595 (inverted)enInvertedPin
 
 const uint8_t dataArraySize = 6;
 byte dataByte;
@@ -25,13 +25,16 @@ void setup() {
   pinMode(dataPin, OUTPUT);  
   pinMode(latchPin, OUTPUT); 
   pinMode(clockPin, OUTPUT); 
+  pinMode(enInvertedPin, OUTPUT); 
+
+  digitalWrite(enInvertedPin, 1); //all outputs is LOW
 
   dataArray[0] = 0b10000000;
   dataArray[1] = 0b01000000;
   dataArray[2] = 0b00100000;
   dataArray[3] = 0b00100000;
   dataArray[4] = 0b01000000;
-  dataArray[5] = 0b10000000; 
+  dataArray[5] = 0b10000000;  
 
   testBlinkAll();
 }
@@ -39,24 +42,26 @@ void setup() {
 void loop() {  
   for (int j = 0; j < dataArraySize; j++) {    
     dataByte = dataArray[j];    
-    digitalWrite(latchPin, 0);    
-    //MSBFIRST,LSBFIRST (Most Significant Bit First, or, Least Significant Bit First) 
-    shiftOut(dataPin, clockPin, LSBFIRST, dataByte);    
-    digitalWrite(latchPin, 1);
-    delay(100);
+    pushByte(dataByte);     
+    delay(80);
   }
 }
 
 void testBlinkAll() { 
-  digitalWrite(latchPin, 0);
-  shiftOut(dataPin, clockPin, MSBFIRST, 0b11111111);  
-  digitalWrite(latchPin, 1);
+  pushByte(0b11111111);
   delay(3000);
+  
+  pushByte(0b00000000);
+  delay(3000);
+}
 
+void pushByte(byte dataByte){
+  //MSBFIRST,LSBFIRST (Most Significant Bit First, or, Least Significant Bit First) 
+  digitalWrite(enInvertedPin, 1); //all outputs is LOW
   digitalWrite(latchPin, 0);
-  shiftOut(dataPin, clockPin, MSBFIRST, 0b00000000);  
+  shiftOut(dataPin, clockPin, LSBFIRST, dataByte);  
   digitalWrite(latchPin, 1);
-  delay(3000);
+  digitalWrite(enInvertedPin, 0); //all outputs are controlled by registers
 }
 
 
@@ -106,6 +111,9 @@ void testBlinkAll() {
  digitalWrite(myClockPin, 0);
  }
  */
+
+
+
 
 
 
