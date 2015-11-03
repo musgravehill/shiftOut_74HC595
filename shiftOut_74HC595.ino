@@ -1,5 +1,15 @@
 /*
 Shift registers at 74HC595
+
+===TODO===
+^^ - inverted pin
+
+ÊŇ--GND registers controls output
+ÊŇ--VCC set all output is LOW (high impedans)
+
+ŘŜŤ--GND  reset 74HC595
+ŘŜŤ--VCC  normal mode
+
  */
 
 int dataPin = 3; //DS of 74HC595
